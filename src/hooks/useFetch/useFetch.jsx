@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 
-export const useFetch = (url = "", token = "") => {
+export const useFetch = (url = "") => {
   const [content, setContent] = useState({
     data: {},
     isLoading: false,
   });
 
   const fetchData = async () => {
+    const token=localStorage.getItem('token');
+
     let config = {
       headers: {},
     };
 
-    if (token !== "") {
+    if (typeof(token==="undefined")) {
       config.headers = { Authorization: "Bearer " + token };
     }
 

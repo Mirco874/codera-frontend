@@ -1,0 +1,9 @@
+.class-card{
+    padding: 12px;
+    border: 1px solid black;
+    height: 162px;
+    width: 248px;
+    cursor: pointer;
+    background-color: white;
+    margin-bottom: 5vh
+}

@@ -7,10 +7,10 @@ import { useFetch } from '../../../hooks';
 import "./SideBar.css";
 export const SideBar = () => {
 
-  const token=localStorage.getItem('token')
-  const {data}=useFetch("users/me",token);
+
+  const {data}=useFetch("users/me");
   const {fullName,photo}=data;
-  
+
 
 
   return (
