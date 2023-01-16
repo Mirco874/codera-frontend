@@ -72,14 +72,14 @@ export const RegisterPage = () => {
   return (
     <main>
       <div className="center-form">
-        <h6>Register a new account</h6>
+        <h2 className="h6">Register a new account</h2>
         <RegisterForm
           form={formData}
           onFormChange={onFormChange}
           onSubmit={register}
         />
-        <p>
-          If you have an account <Link to="/auth/login">Sign in</Link>{" "}
+        <p className="body2">
+          If you have an account <Link className="body2" to="/auth/login">Sign in</Link>{" "}
         </p>
       </div>
       <ToastContainer
