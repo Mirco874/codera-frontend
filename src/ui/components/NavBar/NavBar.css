@@ -1,0 +1,22 @@
+.navbar{
+    height: 51px;
+    width: 100%;
+    border-bottom: 1px solid #B7B7B7;
+    padding-top: 10px;
+    padding-bottom: 6px;
+}
+
+.logo{
+    height: 100%;
+    margin-left: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.logo-image{
+    height: 40px;
+    width: 44px;
+    margin-right: 10px;
+}

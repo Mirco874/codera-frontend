@@ -1,0 +1,14 @@
+button{
+    margin-block: 1vh;
+}
+
+.blue-button{
+    background-color: #456086;
+    color: #ffffff;
+    border:none;
+}
+
+.white-button{
+    background-color: #ffffff;
+    border: 1px solid black;
+}
