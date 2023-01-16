@@ -1,0 +1,10 @@
+main {
+  padding-inline: 70px;
+}
+.center-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-block: auto;
+  margin-top: 10vh;
+}

@@ -20,9 +20,13 @@ export const Button = ({ text, type, height, width }) => {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string,
 };
 
 Button.defaultProps = {
   text: "Button",
   type: "blue",
+  height:"100px",
+  width: "100px"
 };
