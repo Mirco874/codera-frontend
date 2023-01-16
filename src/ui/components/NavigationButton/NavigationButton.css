@@ -1,9 +1,18 @@
 a{
-    width: 175px;
+    width: 180px;
     height: 38px;
     margin-bottom: 12px; 
     text-align: center;
     font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-text{
+    margin-left: 10px;
 }
 
 .activeButton{

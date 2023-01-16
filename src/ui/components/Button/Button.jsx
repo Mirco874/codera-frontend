@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import "./Button.css";
 
-export const Button = ({ text, type, height, width, variation }) => {
+export const Button = ({ text, type, height, width, variation, borderRadius }) => {
   switch (type) {
     case "white":
       return (
-        <button className="white-button button-text" type={variation}>
+        <button
+          className="white-button button-text"
+          style={{ height, width, borderRadius }}
+          type={variation}
+        >
           {text}
         </button>
       );
@@ -13,7 +17,7 @@ export const Button = ({ text, type, height, width, variation }) => {
       return (
         <button
           className="blue-button button-text"
-          style={{ height, width }}
+          style={{ height, width, borderRadius }}
           type={variation}
         >
           {text}
@@ -28,6 +32,7 @@ Button.propTypes = {
   height: PropTypes.string,
   width: PropTypes.string,
   variation: PropTypes.string,
+  borderRadius:PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -36,4 +41,5 @@ Button.defaultProps = {
   height: "100px",
   width: "100px",
   variation: "button",
+  borderRadius:"0",
 };

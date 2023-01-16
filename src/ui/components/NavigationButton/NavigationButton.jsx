@@ -7,10 +7,10 @@ export const NavigationButton = ({ icon, text ,path}) => {
     <>
       <NavLink
         to={path}
-        className={({ isActive }) => (isActive ? 'activeButton' : 'inactiveButton')}
+        className={({ isActive }) => (isActive ? 'activeButton button-text' : 'inactiveButton button-text')}
       >
-        {icon}
-         {text}
+        {icon} 
+        <p className="button-text">{text}</p>
       </NavLink>
     </>
   );
