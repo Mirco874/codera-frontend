@@ -8,7 +8,7 @@ export const RegisterPage = () => {
       <div className="center-form">
         <h6>Register a new account</h6>
         <RegisterForm/>
-        <p>If you have an account <Link>Sign in</Link> </p>
+        <p>If you have an account <Link to="/auth/login">Sign in</Link> </p>
       </div>
     </main>
   )

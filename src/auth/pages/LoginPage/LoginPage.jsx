@@ -7,7 +7,7 @@ export const LoginPage = () => {
         <div className="center-form">
           <img className="codera-logo" src="../assets/images/codera_logo.png" alt="codera logo"/>
           <LoginForm/>
-          <p>Don't you have an account? <Link to={""}>Sign up</Link> </p>
+          <p>Don't you have an account? <Link to={"/auth/register"}>Sign up</Link> </p>
         </div>
     </main>
   )
