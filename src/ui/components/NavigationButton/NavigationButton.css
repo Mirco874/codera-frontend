@@ -1,0 +1,18 @@
+a{
+    width: 175px;
+    height: 38px;
+    margin-bottom: 12px; 
+    text-align: center;
+    font-size: 14px;
+}
+
+.activeButton{
+    color: #456086;
+    background-color: #FAFBFF;
+    margin-inline: 0;
+    padding-inline: 0;
+}
+
+.inactiveButton{
+    color: #000000;
+}

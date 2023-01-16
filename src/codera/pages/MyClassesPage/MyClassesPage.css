@@ -1,0 +1,9 @@
+.body{
+    display: flex;
+    flex-direction: row;
+}
+.main-layout{
+    background-color: #FAFBFF;
+    display: block;
+    width: 100%;
+}

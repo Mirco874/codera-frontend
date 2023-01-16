@@ -3,13 +3,21 @@ import "./Button.css";
 
 export const Button = ({ text, type, height, width, variation }) => {
   switch (type) {
-    case "blue":
-      return (
-        <button className="blue-button" style={{ height, width }} type={variation} >{text}</button>
-      );
     case "white":
       return (
-        <button className="white-button" type={variation}> {text} </button>
+        <button className="white-button" type={variation}>
+          {text}
+        </button>
+      );
+    default:
+      return (
+        <button
+          className="blue-button"
+          style={{ height, width }}
+          type={variation}
+        >
+          {text}
+        </button>
       );
   }
 };
@@ -19,7 +27,7 @@ Button.propTypes = {
   type: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
-  variation:PropTypes.string,
+  variation: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -27,5 +35,5 @@ Button.defaultProps = {
   type: "blue",
   height: "100px",
   width: "100px",
-  variation:"button"
+  variation: "button",
 };
