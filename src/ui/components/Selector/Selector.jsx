@@ -6,7 +6,7 @@ export const Selector = ({ name, optionsList, defaultValue,  onChange, isLoading
     <select className="body2" name={name} onChange={onChange}>
       
       {!defaultValue && (
-        <option className="body2" disabled selected>
+        <option className="body2" disabled defaultValue={name}>
           {name}
         </option>
       )}

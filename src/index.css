@@ -5,15 +5,6 @@ body {
 
 }
 
-#root{
-  display: grid;
-  grid-template-areas:
-    'header header header header header header header header header header header header'
-    'aside main main main main main main main main  main  main  main'
-    'aside main main main main main main main main main main  main';
-  grid-template-columns: 175px ;
-}
-
 input::placeholder {
   padding-left: 5px;
   font-style: normal;
@@ -21,6 +12,15 @@ input::placeholder {
   font-size: 16px;
   line-height: 130%;
   letter-spacing: 0.0025em;
+}
+
+.page{
+  display: grid;
+  grid-template-areas:
+    'header header header header header header header header header header header header'
+    'aside main main main main main main main main  main  main  main'
+    'aside main main main main main main main main main main  main';
+  grid-template-columns: 175px ;
 }
 
 .main-content{
