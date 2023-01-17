@@ -10,8 +10,8 @@ export const findClassName=(javaCode)=>{
   let wordArray=javaCode.split(" ");
 
   const classWordIndex=wordArray.indexOf("class");
-
-  if(!wordArray[classWordIndex+1]){
+  
+  if(!wordArray[classWordIndex+1] || classWordIndex===-1){
     return null;
   }
 
