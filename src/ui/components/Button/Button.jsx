@@ -10,7 +10,7 @@ export const Button = ({ text, type, height, width, variation, borderRadius }) =
           style={{ height, width, borderRadius }}
           type={variation}
         >
-          {text}
+        {text}
         </button>
       );
     default:

@@ -5,10 +5,8 @@ import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
   const { data, isLoading, content, fetchData } = useFetch("classes");
-  console.log(data)
   return (
-    <div className="body">
-      <SideBar />
+    <div className="main-content">
       <section className="main-layout">
         <h2 className="h6">My classes</h2>
         {isLoading && <p> loading</p>}
@@ -16,12 +14,16 @@ export const MyClassesPage = () => {
           <InfoMessage text="Seems that you are not enrolled in any course" />
         ) : (
           <ul className="class-list">
-            {data.map(({id,className,instructor }) => (
+            {data.map(({ id, className, instructor }) => (
               <>
-              <li style={{listStyleType:'none'}} key={id}>
-                <ClassCard id={id} className={className} instructor={instructor.fullName}/>
-              </li>
-                      </>    
+                <li style={{ listStyleType: "none" }} key={id}>
+                  <ClassCard
+                    id={id}
+                    className={className}
+                    instructor={instructor.fullName}
+                  />
+                </li>
+              </>
             ))}
           </ul>
         )}
@@ -31,14 +33,14 @@ export const MyClassesPage = () => {
             height="45px"
             width="246px"
             text="Join a class"
-            borderRadius="20px"
+            borderRadius="5px"
           />
           <Button
             type="white"
             height="45px"
             width="246px"
             text="Create a class"
-            borderRadius="20px"
+            borderRadius="5px"
           />
         </div>
       </section>

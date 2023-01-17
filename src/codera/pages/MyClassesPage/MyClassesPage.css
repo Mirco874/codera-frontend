@@ -1,18 +1,10 @@
-.body{
-    display: flex;
-    flex-direction: row;
-}
-.main-layout{
-    padding-inline:70px;
-    background-color: #FAFBFF;
-    display: block;
-    width: 100%;
-}
+
 .option-buttons{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+
 .class-list{
     padding: 0;
     margin: 0;

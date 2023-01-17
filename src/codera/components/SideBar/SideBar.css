@@ -1,11 +1,16 @@
 .sideBar{
+    display: block;
+    grid-area: aside;
+    border-right: 1px solid #D3D3D3;
     padding-top: 15px;
+    width: 174px;
+    height: 90vh;
+}
+
+.sideBar-content{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px solid #D3D3D3;
-    width: 175px;
-    height: 92vh;
 }
 
 .profile-img{

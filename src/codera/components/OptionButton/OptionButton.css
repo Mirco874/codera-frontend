@@ -1,0 +1,11 @@
+.option-button{
+    border: 1px solid black;
+    height: 167px;
+    width: 159px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

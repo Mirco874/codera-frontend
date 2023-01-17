@@ -2,7 +2,16 @@ body {
   font-family: 'Poppins', sans-serif;
   color: rgb(0, 0, 0);
   margin: 0;
-  
+
+}
+
+#root{
+  display: grid;
+  grid-template-areas:
+    'header header header header header header header header header header header header'
+    'aside main main main main main main main main  main  main  main'
+    'aside main main main main main main main main main main  main';
+  grid-template-columns: 175px ;
 }
 
 input::placeholder {
@@ -14,14 +23,25 @@ input::placeholder {
   letter-spacing: 0.0025em;
 }
 
+.main-content{
+  margin: 0;
+  padding: 0;
+  display: block;
+  grid-area: main;
+  background-color: #FAFBFF;
+  max-width: 100%;
+}
 
-main {
+.main-layout{
   padding-inline: 70px;
+  display: flex;
+  flex-direction: column;
   margin: 0;
 }
 
+
 .center-form {
-  display: flex;
+  display: block;
   align-items: center;
   flex-direction: column;
   margin-block: auto;
@@ -32,6 +52,10 @@ main {
   border: 2px solid black;
   height: 38px;
   width: 292px;
+}
+
+.section-title{
+  margin-bottom: 0;
 }
 
 .h1 {

@@ -16,7 +16,7 @@ export const LoginPage = () => {
 
   const login=async()=>{
     try{
-      const response=await axios.post('api/v1/auth/login',{email,password});
+      const response=await axios.post('auth/login',{email,password});
       toast.success('login successfull', {
         position: "top-right",
         autoClose: 5000,
@@ -59,7 +59,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <main>
+    <>
         <div className="center-form">
           <img className="codera-logo" src="../../assets/images/codera_logo.png" alt="codera logo"/>
           <LoginForm form={formData} onFormChange={onFormChange} onSubmit={login}/>
@@ -78,6 +78,6 @@ export const LoginPage = () => {
         theme="light"
       />
       <ToastContainer />
-    </main>
+    </>
   )
 }

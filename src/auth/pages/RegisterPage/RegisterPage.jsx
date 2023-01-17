@@ -34,7 +34,7 @@ export const RegisterPage = () => {
     }
 
     try {
-      await axios.post("api/v1/auth/register", {
+      await axios.post("auth/register", {
         fullName,
         email,
         password,

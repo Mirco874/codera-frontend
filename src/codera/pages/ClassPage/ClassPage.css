@@ -1,0 +1,5 @@
+.option-buttons{
+display: flex;
+flex-direction: row;
+padding-inline: 150px;
+}
