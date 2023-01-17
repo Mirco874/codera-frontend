@@ -5,12 +5,12 @@
     height: 15vh;
     padding-inline: 10px ;
     box-sizing: border-box; 
+    font-size: 14px;
 }
 
 .text-green{
     color: #1FBE05 ;
     margin-right: 10px;
-    
 }
 
 .text-white{

@@ -63,7 +63,14 @@ export const PracticeCodePage = () => {
     const body = { className, code };
 
     if (!validateClassName(className)) {
-      const message = `Error de sintaxis en el nombre de la clase: ${className}`;
+      let message='';
+      if(className===null){
+        message = `no se encontro el nombre de la clase`;
+      }
+      else{
+        message = `Error de sintaxis en el nombre de la clase: ${className}`;
+      }
+      
       toast.error(message, {
         position: "top-right",
         autoClose: 5000,
