@@ -2,3 +2,4 @@ export * from "./Button/Button";
 export * from "./NavBar/NavBar";
 export * from "./NavigationButton/NavigationButton";
 export * from "./InfoMessage/InfoMessage";
+export * from "./Selector/Selector";

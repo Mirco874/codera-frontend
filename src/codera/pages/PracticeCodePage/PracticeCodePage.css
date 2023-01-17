@@ -1,0 +1,37 @@
+.editor{
+    width:90%;
+}
+
+.editor-options{
+    padding: 0;
+    width: 75%;
+    margin-bottom: 0;
+}
+
+.editor-option{
+    margin-right: 16px;
+    display: inline-block;
+    list-style-type: none;
+}
+
+.editor-option p{
+display: inline-block;
+
+}
+
+.editor-button{
+    margin-top: 0;
+    background-color: #FFFFFF;
+    border: 0.3px solid #969696 ;
+    border-radius: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    height: 25px;
+    max-height: 25px;
+}
+.editor-button svg{
+    max-width: 25px;
+    margin-left: 5px;
+}
+

@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 export const useFetch = (url = "") => {
   const [content, setContent] = useState({
     data: {},
-    isLoading: false,
+    isLoading: true,
   });
 
   const fetchData = async () => {

@@ -4,9 +4,13 @@ export const useForm = (initialState = {}) => {
   const [formData, setFormData] = useState(initialState);
 
   const onFormChange = ({ target }) => {
-    const { value, name } = target;
-    setFormData({ ...formData, [name]: value });
-    console.log(formData);
+    const { value, name, type } = target;
+
+    if (type === "checkbox") {
+      setFormData({ ...formData, [name]: !formData[name] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const onFormReset = () => {
