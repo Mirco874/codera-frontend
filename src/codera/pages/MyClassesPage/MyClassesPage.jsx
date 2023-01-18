@@ -1,10 +1,12 @@
-import { useFetch } from "../../../hooks";
+import { useFetch, useModal } from "../../../hooks";
 import { Button, InfoMessage } from "../../../ui/components";
-import { ClassCard } from "../../components";
+import { ClassCard, JoinClassModal } from "../../components";
 import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
-  const { data, isLoading} = useFetch("classes");
+  const { data, isLoading,fetchData} = useFetch("classes");
+  const { open, onOpenModal, onCloseModal } = useModal();
+
   return (
     <div className="main-content">
       <section className="main-layout">
@@ -29,7 +31,6 @@ export const MyClassesPage = () => {
         )
         
         }
-        
         <div className="option-buttons">
           <Button
             type="blue"
@@ -37,6 +38,7 @@ export const MyClassesPage = () => {
             width="246px"
             text="Join a class"
             borderRadius="5px"
+            onClickFunction={onOpenModal}
           />
           <Button
             type="white"
@@ -45,6 +47,10 @@ export const MyClassesPage = () => {
             text="Create a class"
             borderRadius="5px"
           />
+
+        <JoinClassModal openState={open} onCloseModal={onCloseModal} onReload={fetchData}/>
+
+
         </div>
       </section>
     </div>

@@ -20,3 +20,9 @@
     background-color: #ffffff;
     border: 1px solid black;
 }
+
+.red-button{
+    background-color: #ff2424;
+    color: #ffffff;
+    border:none;
+}

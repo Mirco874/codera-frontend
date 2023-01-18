@@ -20,12 +20,26 @@ export const Button = ({ text, type, height, width, variation, borderRadius, onC
         {text}
         </button>
       );
+
+      case "red":
+        return (
+          <button
+            className="button red-button button-text"
+            style={{ height, width, borderRadius }}
+            type={variation}
+            onClick={handleClick}
+          >
+          {text}
+          </button>
+        );
+
     default:
       return (
         <button
           className="button blue-button"
           style={{ height, width, borderRadius }}
           type={variation}
+          onClick={handleClick}
         >
           <p className="button-text">{text}</p>  
         </button>
@@ -40,6 +54,7 @@ Button.propTypes = {
   width: PropTypes.string,
   variation: PropTypes.string,
   borderRadius:PropTypes.string,
+  onClickFunction:PropTypes.func
 };
 
 Button.defaultProps = {
@@ -49,4 +64,6 @@ Button.defaultProps = {
   width: "100px",
   variation: "button",
   borderRadius:"0",
+  onClickFunction:()=>{console.log("pressed")
+}
 };

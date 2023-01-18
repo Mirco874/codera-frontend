@@ -29,7 +29,6 @@ export const useFetch = (url = "") => {
   
   useEffect(() => {
     fetchData();
-    console.log("data loaded")
   },[]);
 
   return { ...content, content, fetchData };
