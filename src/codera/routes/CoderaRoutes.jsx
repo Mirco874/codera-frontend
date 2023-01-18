@@ -5,7 +5,7 @@ import { ClassPage, MyClassesPage, PracticeCodePage } from '../pages';
 
 export const CoderaRoutes = () => {
   return (
-    <>
+    <div className='page'>
         <NavBar/>
         <SideBar />
 
@@ -15,6 +15,6 @@ export const CoderaRoutes = () => {
             <Route path="practice" element={<PracticeCodePage/>} />
         </Routes>
 
-    </>
+    </div>
   )
 }

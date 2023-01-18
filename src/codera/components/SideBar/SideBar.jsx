@@ -3,11 +3,16 @@ import { BsCodeSlash, BsFillFilePersonFill } from "react-icons/bs";
 import { FiLogOut, FiSettings } from "react-icons/fi";
 import { NavigationButton } from "../../../ui/components";
 import { useFetch } from "../../../hooks";
+import { useNavigate } from "react-router-dom";
 import "./SideBar.css";
 
 export const SideBar = () => {
   const { data } = useFetch("users/me");
   const { fullName, photo } = data;
+
+  const logout=()=>{
+    localStorage.removeItem("token");
+  }
 
   return (
     <aside className="sideBar">
@@ -34,7 +39,7 @@ export const SideBar = () => {
           text="Profile"
           path="/profile"
         />
-        <NavigationButton icon={<FiLogOut />} text="Logout" />
+        <NavigationButton icon={<FiLogOut />} text="Logout" onClick={logout} />
       </div>
     </aside>
   );
