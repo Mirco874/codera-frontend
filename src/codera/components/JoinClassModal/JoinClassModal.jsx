@@ -12,46 +12,45 @@ const initialForm = { code: "" };
 
 export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
   const { code, onFormChange, onFormReset } = useForm(initialForm);
-  const [hideErrorMessage, setHideErrorMessage] = useState(true);
+  const [errorMessage,setErrorMessage]=useState("");
 
   const enroll = async () => {
     const { id } = getUserInformation();
 
-    const body = {
-      userId: id,
-      classId: code,
-    };
+    const body = { userId: id, classId: code};
 
     try {
-      const response = await post("inscriptions", body);
-      console.log(response)
+      await post("inscriptions", body);
       onReload();
       closeModal();
-
-    } catch (error) {
-      setHideErrorMessage(false);
+    } 
+    catch (error) {
+      setErrorMessage(error.response.data.message)
     }
+
   };
 
+  const removeErrorMessage=()=>{
+    setErrorMessage("");
+  }
+
   const closeModal = () => {
-    setHideErrorMessage(true);
+    removeErrorMessage();
     onFormReset();
     onCloseModal();
   };
 
   const onCodeTextChange=(e)=>{
     onFormChange(e);
-    setHideErrorMessage(true);
+    removeErrorMessage();
   }
-
 
   return (
     <Modal open={openState} onClose={onCloseModal}>
+      
       <h2 className="sub-title2">Insert the course code: </h2>
 
-      <p className="error-message body2" hidden={hideErrorMessage}>
-        the class id: "{code}" was not found
-      </p>
+      <p className="error-message body2"> {errorMessage} </p>
 
       <input
         className="input-field"
@@ -84,12 +83,12 @@ export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
 
 JoinClassModal.defaultProps = {
   openState: false,
-  onCloseModal: () => {
-    console.log("close modal");
-  },
+  onCloseModal: () => {console.log("close modal"); },
+  onReload:()=>{console.log("reloaded");}
 };
 
 JoinClassModal.propTypes = {
   openState: PropTypes.bool,
   onCloseModal: PropTypes.func,
+  onReload:PropTypes.func
 };

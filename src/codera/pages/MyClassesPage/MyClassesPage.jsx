@@ -1,11 +1,12 @@
 import { useFetch, useModal } from "../../../hooks";
 import { Button, InfoMessage } from "../../../ui/components";
-import { ClassCard, JoinClassModal } from "../../components";
+import { ClassCard, CreateClassModal, JoinClassModal } from "../../components";
 import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
   const { data, isLoading,fetchData} = useFetch("classes");
-  const { open, onOpenModal, onCloseModal } = useModal();
+  const { open:isJoinModalOpen, onOpenModal:openJoinModal, onCloseModal:closeJoinModal } = useModal();
+  const { open:isCreateModalOpen, onOpenModal:openCreateModal, onCloseModal:closeCreateModal } = useModal();
 
   return (
     <div className="main-content">
@@ -38,7 +39,7 @@ export const MyClassesPage = () => {
             width="246px"
             text="Join a class"
             borderRadius="5px"
-            onClickFunction={onOpenModal}
+            onClickFunction={openJoinModal}
           />
           <Button
             type="white"
@@ -46,10 +47,11 @@ export const MyClassesPage = () => {
             width="246px"
             text="Create a class"
             borderRadius="5px"
+            onClickFunction={openCreateModal}
           />
 
-        <JoinClassModal openState={open} onCloseModal={onCloseModal} onReload={fetchData}/>
-
+        <JoinClassModal openState={isJoinModalOpen} onCloseModal={closeJoinModal} onReload={fetchData}/>
+        <CreateClassModal openState={isCreateModalOpen} onCloseModal={closeCreateModal} onReload={fetchData} />
 
         </div>
       </section>

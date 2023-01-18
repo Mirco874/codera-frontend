@@ -5,7 +5,16 @@ body {
 
 }
 
-input::placeholder {
+input::placeholder  {
+  padding-left: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0.0025em;
+}
+
+textarea::placeholder {
   padding-left: 5px;
   font-style: normal;
   font-weight: 400;
