@@ -1,24 +1,31 @@
 import { AiOutlineBook } from "react-icons/ai";
 import { BsCodeSlash, BsFillFilePersonFill } from "react-icons/bs";
-import { FiLogOut, FiSettings } from "react-icons/fi";
+import { FiSettings } from "react-icons/fi";
 import { NavigationButton } from "../../../ui/components";
 import { useFetch } from "../../../hooks";
-import { useNavigate } from "react-router-dom";
 import "./SideBar.css";
 
 export const SideBar = () => {
-  const { data } = useFetch("users/me");
-  const { fullName, photo } = data;
-
-  const logout=()=>{
-    localStorage.removeItem("token");
-  }
+  const { data,isLoading } = useFetch("users/me");
 
   return (
     <aside className="sideBar">
       <div className="sideBar-content">
-        <img className="profile-img" src={photo} alt={fullName} />
-        <p className="body2">{fullName}</p>
+
+        {isLoading? 
+        <>
+          <img className="profile-img" src="../../assets/images/default_profile_picture.png" alt="defalt profile" />
+          <p className="body2">fullName</p>
+        </>
+        :<> 
+          {
+            data.photo==="" ? 
+            <img className="profile-img" src="../../assets/images/default_profile_picture.png" alt="not found profile" />
+            : <img className="profile-img" src={data.photo} alt={data.fullName} />
+          }
+          <p className="body2">{data.fullName}</p>
+        </> }
+
         <NavigationButton
           icon={<AiOutlineBook size={25} />}
           text="Class"
@@ -39,7 +46,7 @@ export const SideBar = () => {
           text="Profile"
           path="/profile"
         />
-        <NavigationButton icon={<FiLogOut />} text="Logout" onClick={logout} />
+
       </div>
     </aside>
   );

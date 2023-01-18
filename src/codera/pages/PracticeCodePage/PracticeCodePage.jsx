@@ -19,6 +19,7 @@ const themeList = [
 ];
 
 export const PracticeCodePage = () => {
+
   const editorForm = {
     theme: themeList[0].name,
     language: "",
@@ -27,8 +28,7 @@ export const PracticeCodePage = () => {
   };
 
   const { data: languageList, isLoading } = useFetch("programming-languages");
-  const { theme, language, snippets, autocomplete, onFormChange } =
-    useForm(editorForm);
+  const { theme, language, snippets, autocomplete, onFormChange } = useForm(editorForm);
 
   const [code, setCode] = useState("");
   const [outputConsole, setOutpuConsole] = useState("");

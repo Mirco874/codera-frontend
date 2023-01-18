@@ -3,10 +3,10 @@ import "./Selector.css";
 export const Selector = ({ name, optionsList, defaultValue,  onChange, isLoading }) => {
 
   return (
-    <select className="body2" name={name} onChange={onChange}>
+    <select className="body2" name={name} onChange={onChange} defaultValue={name}>
       
       {!defaultValue && (
-        <option className="body2" disabled defaultValue={name}>
+        <option className="body2" disabled  >
           {name}
         </option>
       )}

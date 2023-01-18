@@ -8,7 +8,7 @@ import "./ClassPage.css";
 export const ClassPage = () => {
   const { classId } = useParams();
   const { data, isLoading } = useFetch(`classes/${classId}`);
-  const { id, className, classDescription, instructor } = data;
+
 
   return (
     <div className="main-content">
@@ -18,14 +18,14 @@ export const ClassPage = () => {
         ) : (
           <>
             <h2 className="h6 section-title">
-              My classes {">"} {className}
+              My classes {">"} {data.className}
             </h2>
-            {typeof instructor !== "undefined" && (
+            {typeof data.instructor !== "undefined" && (
               <>
                 {" "}
                 <p className="body2">
                   <b>Instructor: </b>
-                  {instructor.fullName}
+                  {data.instructor.fullName}
                 </p>{" "}
               </>
             )}

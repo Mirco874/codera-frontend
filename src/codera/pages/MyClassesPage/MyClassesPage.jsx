@@ -1,16 +1,16 @@
 import { useFetch } from "../../../hooks";
 import { Button, InfoMessage } from "../../../ui/components";
-import { ClassCard, SideBar } from "../../components";
+import { ClassCard } from "../../components";
 import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
-  const { data, isLoading, content, fetchData } = useFetch("classes");
+  const { data, isLoading} = useFetch("classes");
   return (
     <div className="main-content">
       <section className="main-layout">
         <h2 className="h6">My classes</h2>
-        {isLoading && <p> loading</p>}
-        {Object.keys(data).length === 0 ? (
+        {isLoading ? <p> loading</p>:
+        data.length === 0 ? (
           <InfoMessage text="Seems that you are not enrolled in any course" />
         ) : (
           <ul className="class-list">
@@ -26,7 +26,10 @@ export const MyClassesPage = () => {
               </>
             ))}
           </ul>
-        )}
+        )
+        
+        }
+        
         <div className="option-buttons">
           <Button
             type="blue"

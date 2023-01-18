@@ -10,7 +10,8 @@ export const NavBar = () => {
   const navigate=useNavigate();
 
   useEffect(() => {
-    SetActiveSession(existUserLogged());
+    const isLogged=existUserLogged()
+    SetActiveSession(isLogged);
   }, [localStorage.getItem("token")]);
 
   const logout=()=>{
