@@ -33,10 +33,12 @@ export const ClassPage = () => {
                   <OptionButton
                     text="New Task"
                     icon={<GrAdd size={100} />}
+                    navigateTo="create-task"
                   />
                   <OptionButton
                     text="Check tasks"
                     icon={<AiFillEye size={100} />}
+                    navigateTo="check-tasks"
                   />
                 </>
               ) 
@@ -45,10 +47,12 @@ export const ClassPage = () => {
                   <OptionButton
                     text="Pending tasks"
                     icon={<BsFillFileEarmarkCodeFill size={100} />}
+                    navigateTo="pending-tasks"
                   />
                   <OptionButton
                     text="Delivered tasks"
                     icon={<GoChecklist size={100} />}
+                    navigateTo="delivered-tasks"
                   />
                 </>
               )
