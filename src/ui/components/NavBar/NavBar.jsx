@@ -7,6 +7,8 @@ export const NavBar = () => {
             <img className='logo-image' src="../assets/images/codera_logo_small.png" alt="codera logo"/>
             <p className='logo-title h5'>Codera</p>
         </div>
+        
+        <button className="text-button"> Login </button>
     </nav>
   )
 }

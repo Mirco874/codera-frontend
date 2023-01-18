@@ -1,0 +1,23 @@
+.landing-page{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    padding-inline: 70px;
+}
+
+.left-section{
+    width: 603px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.landing-page-image{
+    height: 436px;
+    width: 584px;
+}
+
+.left-section button{
+    margin-top: 90px;
+    align-self: center;
+}
+

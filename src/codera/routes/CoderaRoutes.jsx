@@ -8,13 +8,11 @@ export const CoderaRoutes = () => {
     <div className='page'>
         <NavBar/>
         <SideBar />
-
         <Routes>
             <Route path="classes" element={<MyClassesPage/>} />
             <Route path="/classes/:classId" element={<ClassPage/>} />
             <Route path="practice" element={<PracticeCodePage/>} />
         </Routes>
-
     </div>
   )
 }
