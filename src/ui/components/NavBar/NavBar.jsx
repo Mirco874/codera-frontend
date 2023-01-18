@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { existUserLogged } from "../../../codera/helpers/userData";
+import { useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 export const NavBar = () => {
   const [activeSession, SetActiveSession] = useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     SetActiveSession(existUserLogged());
@@ -15,9 +17,18 @@ export const NavBar = () => {
     localStorage.removeItem("token");
   }
 
+  const visitInitialPage=()=>{
+    if(existUserLogged()){
+      navigate("/classes")
+    }
+    else{
+      navigate("/")
+    }
+  }
+
   return (
     <nav className="navbar ">
-      <div className="logo">
+      <div className="logo" onClick={visitInitialPage}>
         <img
           className="logo-image"
           src="../assets/images/codera_logo_small.png"

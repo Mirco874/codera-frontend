@@ -1,7 +1,14 @@
-button{
+.button{
     margin-block: 1vh;
     cursor: pointer;
+    margin-left: 0px;  
 }
+
+.button p{
+    margin: 0;
+    padding: 0;
+}
+
 
 .blue-button{
     background-color: #456086;

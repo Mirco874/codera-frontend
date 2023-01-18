@@ -12,7 +12,7 @@ export const Button = ({ text, type, height, width, variation, borderRadius, onC
     case "white":
       return (
         <button
-          className="white-button button-text"
+          className="button white-button button-text"
           style={{ height, width, borderRadius }}
           type={variation}
           onClick={handleClick}
@@ -23,11 +23,11 @@ export const Button = ({ text, type, height, width, variation, borderRadius, onC
     default:
       return (
         <button
-          className="blue-button button-text"
+          className="button blue-button"
           style={{ height, width, borderRadius }}
           type={variation}
         >
-          {text}
+          <p className="button-text">{text}</p>  
         </button>
       );
   }

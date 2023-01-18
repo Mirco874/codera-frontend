@@ -65,20 +65,18 @@ export const RegisterPage = () => {
         theme: "light",
       });
     }
-
-
   };
 
   return (
     <main>
-      <div className="center-form">
+      <div className="form-content">
         <h2 className="h6">Register a new account</h2>
         <RegisterForm
           form={formData}
           onFormChange={onFormChange}
           onSubmit={register}
         />
-        <p className="body2">
+        <p className="body2 form-message">
           If you have an account <Link className="body2" to="/auth/login">Sign in</Link>{" "}
         </p>
       </div>

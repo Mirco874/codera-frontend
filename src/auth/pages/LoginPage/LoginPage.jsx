@@ -60,10 +60,10 @@ export const LoginPage = () => {
 
   return (
     <>
-        <div className="center-form">
+        <div className="form-content">
           <img className="codera-logo" src="../../assets/images/codera_logo.png" alt="codera logo"/>
           <LoginForm form={formData} onFormChange={onFormChange} onSubmit={login}/>
-          <p className="body2"> Don't you have an account? <Link className="body2" to={"/auth/register"}>Sign up</Link> </p>
+          <p className="body2 form-message"> Don't you have an account? <Link className="body2" to={"/auth/register"}>Sign up</Link> </p>
         </div>
         <ToastContainer
         position="top-right"

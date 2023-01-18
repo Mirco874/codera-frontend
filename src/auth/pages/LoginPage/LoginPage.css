@@ -4,3 +4,12 @@
     margin-bottom: 2vh;
 }
 
+.form-message a{
+    
+    display: inline;
+    color: #2D1B9E;
+    text-decoration: underline;
+}
+
+
+
