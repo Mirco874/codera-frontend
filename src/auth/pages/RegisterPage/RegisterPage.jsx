@@ -31,6 +31,7 @@ export const RegisterPage = () => {
         progress: undefined,
         theme: "light",
       });
+      return;
     }
 
     try {
