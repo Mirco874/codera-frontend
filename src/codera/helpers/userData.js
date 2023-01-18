@@ -1,5 +1,5 @@
 export const existUserLogged = () => {
-    return typeof localStorage.getItem("token") !== "undefined";
+    return localStorage.getItem("token") !== null;
   };
   
   export const getUserInformation = () => {
