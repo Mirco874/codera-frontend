@@ -1,7 +1,14 @@
 import { Button, NavBar } from "../../../ui/components";
+import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 
 export const LandingPage = () => {
+  const navigate=useNavigate();
+
+  const visitRegisterPage=()=>{
+    navigate("/auth/register");
+  }
+
   return (
     <>
       <NavBar />
@@ -19,6 +26,7 @@ export const LandingPage = () => {
             borderRadius="20px"
             type="white"
             text="Register now"
+            onClickFunction={visitRegisterPage}
           />
         </div>
         <img

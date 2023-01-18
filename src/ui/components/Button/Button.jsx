@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import "./Button.css";
 
-export const Button = ({ text, type, height, width, variation, borderRadius }) => {
+export const Button = ({ text, type, height, width, variation, borderRadius, onClickFunction }) => {
+
+  const handleClick=(e)=>{
+    e.preventDefault();
+    onClickFunction();
+  }
+
   switch (type) {
     case "white":
       return (
@@ -9,6 +15,7 @@ export const Button = ({ text, type, height, width, variation, borderRadius }) =
           className="white-button button-text"
           style={{ height, width, borderRadius }}
           type={variation}
+          onClick={handleClick}
         >
         {text}
         </button>
