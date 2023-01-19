@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "./Selector.css";
 
 export const Selector = ({ name, optionsList, defaultValue,  onChange, isLoading }) => {
@@ -5,7 +6,7 @@ export const Selector = ({ name, optionsList, defaultValue,  onChange, isLoading
   return (
     <select className="body2" name={name} onChange={onChange} defaultValue={name}>
       
-      {!defaultValue && (
+      {(!defaultValue || defaultValue==="") && (
         <option className="body2" disabled  >
           {name}
         </option>
@@ -21,3 +22,21 @@ export const Selector = ({ name, optionsList, defaultValue,  onChange, isLoading
     </select>
   );
 };
+
+
+Selector.propTypes={
+  name:PropTypes.string,
+  optionsList:PropTypes.array, 
+  defaultValue:PropTypes.string,
+  onChange:PropTypes.func,
+  isLoading:PropTypes.bool
+}
+
+
+Selector.defaultProps={
+  name:"selector",
+  optionsList:[{name:"selector"}], 
+  defaultValue:"",
+  onChange: ()=>{console.log("onchange selector")} ,
+  isLoading:false
+}

@@ -1,11 +1,7 @@
-import AceEditor from "react-ace";
 import { useState } from "react";
 import { useFetch, useForm } from "../../../hooks";
 import { saveAs } from "file-saver";
-import { Selector } from "../../../ui/components";
-import { CgPlayTrackNext } from "react-icons/cg";
-import { BiDownload } from "react-icons/bi";
-import { Terminal } from "../../components";
+import { CodeEditor } from "../../components";
 import { runCode } from "../../helpers/runCode";
 import { toast, ToastContainer } from "react-toastify";
 import { findClassName, validateClassName } from "../../helpers/javaHelper";
@@ -137,76 +133,12 @@ export const PracticeCodePage = () => {
     }
   }
 
-
-
   return (
     <div className="main-content">
       <section className="main-layout">
         <h2 className="h6 section-title">Practice code</h2>
-        <form>
-          <ul className="editor-options">
-            <li className="editor-option">
-              <p className="body2">Theme: </p>
-              <Selector
-                optionsList={themeList}
-                name="theme"
-                defaultValue={theme}
-                onChange={onFormChange}
-              />
-            </li>
-            <li className="editor-option">
-              <p className="body2">Language: </p>
-              <Selector
-                optionsList={languageList}
-                name="language"
-                onChange={onFormChange}
-                isLoading={isLoading}
-              />
-            </li>
-            <li className="editor-option">
-              <p className="body2">Enable Snippets: </p>
-              <input
-                type="checkbox"
-                name="snippets"
-                checked={snippets}
-                onChange={onFormChange}
-              />
-            </li>
-            <li className="editor-option">
-              <p className="body2">Enable Autocomplete: </p>
-              <input
-                type="checkbox"
-                name="autocomplete"
-                checked={autocomplete}
-                onChange={onFormChange}
-              />
-            </li>
-          </ul>
 
-          <button className="button-text editor-button" onClick={sendCode}>
-            Run <CgPlayTrackNext size={40} />
-          </button>
-
-          <button className="button-text editor-button" onClick={downloadCode}>
-            Download code <BiDownload size={25} />
-          </button>
-        </form>
-
-        <div className="editor">
-          <AceEditor
-            fontSize="16px"
-            value={code}
-            mode={language}
-            theme={theme}
-            enableLiveAutocompletion={autocomplete}
-            enableSnippets={snippets}
-            onChange={onCodeChange}
-            editorProps={{ $blockScrolling: true }}
-            height="50vh"
-            width="100%"
-          />
-          <Terminal text={outputConsole} />
-        </div>
+        <CodeEditor/>
 
         <ToastContainer
           position="top-right"

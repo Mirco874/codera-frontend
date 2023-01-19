@@ -12,12 +12,15 @@ import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/ace";
+import { DataProvider } from "./provider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <DataProvider>
+        <App />
+      </DataProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

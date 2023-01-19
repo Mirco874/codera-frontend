@@ -5,3 +5,5 @@ export * from "./Terminal/Terminal";
 export * from "./JoinClassModal/JoinClassModal";
 export * from "./CreateClassModal/CreateClassModal";
 export * from "./CreateTaskForm/CreateTaskForm";
+export * from "./CodeEditorModal/CodeEditorModal";
+export * from "./CodeEditor/CodeEditor"

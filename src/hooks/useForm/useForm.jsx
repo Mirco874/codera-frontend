@@ -5,17 +5,20 @@ export const useForm = (initialState = {}) => {
 
   const onFormChange = ({ target }) => {
     const { value, name, type } = target;
-
     if (type === "checkbox") {
-      setFormData({ ...formData, [name]: !formData[name] });
+      changeValue( name, !formData[ name ] );  
     } else {
-      setFormData({ ...formData, [name]: value });
+      changeValue( name, value );
     }
   };
+
+  const changeValue=(name,value)=>{
+    setFormData({ ...formData, [name]: value });
+  }
 
   const onFormReset = () => {
     setFormData(initialState);
   };
 
-  return { ...formData, formData, onFormChange, onFormReset };
+  return { ...formData, formData, onFormChange, onFormReset, changeValue };
 };
