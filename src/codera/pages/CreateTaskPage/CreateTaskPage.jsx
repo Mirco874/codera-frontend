@@ -31,13 +31,16 @@ export const CreateTaskPage = () => {
     const { classId:classGroupId } = useParams();
     const { open: isOpenEditorModal, onOpenModal: openEditorModal, onCloseModal: closeEditorModal }=useModal();
     const { data: classGroup , isLoading: loadingClassGroup } = useFetch(`classes/${classGroupId}`);
-    const { classId, taskTitle, taskDescription, maxScore, templateCode, limitTime, limitDate,onFormChange }=useForm(initialForm);
+    const { taskTitle, taskDescription, maxScore, templateCode, limitDate,onFormChange, changeValue }=useForm(initialForm);
     const { languageList, languagesLoading, fetchLanguages}=useContext(ApplicationContext);
 
     useEffect(()=>{
       fetchLanguages();
     },[])
 
+  const updateTemplateCode=( newCode )=>{
+    changeValue( "templateCode", newCode );
+  }
     
   return (
     <div className="main-content">
@@ -79,7 +82,7 @@ export const CreateTaskPage = () => {
                 <Button text="Create task" type="blue" width="20vh" height="5vh" />
             </form>
 
-            <CodeEditorModal openState={isOpenEditorModal} onCloseModal={closeEditorModal} value={templateCode} onCodeChange={onFormChange}/>
+            <CodeEditorModal openState={isOpenEditorModal} onCloseModal={closeEditorModal} onUpdateCode={updateTemplateCode}/>
 
           </>)
       }

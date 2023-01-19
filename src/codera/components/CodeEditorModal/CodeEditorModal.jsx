@@ -5,14 +5,14 @@ import { CodeEditor } from "../";
 import "react-responsive-modal/styles.css";
 import "./CodeEditorModal.css";
 
-export const CodeEditorModal = ({ openState, onCloseModal, value, onCodeChange  }) => {
+export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode }) => {
 
   return (
     <Modal open={openState} onClose={onCloseModal}>
       
       <h2 className="sub-title2">Template</h2>
 
-      <CodeEditor value={value} onCodeChange={onCodeChange} inputName={"templateCode"}/>
+      <CodeEditor onInputChange={onUpdateCode}/>
 
       <div className="buttons">
         <Button

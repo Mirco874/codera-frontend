@@ -10,9 +10,10 @@ export const useForm = (initialState = {}) => {
     } else {
       changeValue( name, value );
     }
+    
   };
 
-  const changeValue=(name,value)=>{
+  const changeValue=(name, value)=>{
     setFormData({ ...formData, [name]: value });
   }
 

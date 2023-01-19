@@ -13,7 +13,7 @@ import { Terminal } from "../Terminal/Terminal";
 import "./CodeEditor.css"
 
 
-export const CodeEditor = () => {
+export const CodeEditor = ( { onInputChange } ) => {
     const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");
@@ -27,18 +27,14 @@ export const CodeEditor = () => {
 
     const { theme, language, snippets, autocomplete, onFormChange } = useForm(editorForm);  
     
-
     useEffect(()=>{
         fetchLanguages();
       },[])
 
-    const getCode=()=>{
-      console.log(code);
-      return code;
-    }
 
     const onCodeChange = (value) => {
-    setCode(value);
+      onInputChange(value);
+      setCode(value); 
     };
 
     const sendCode = async (e) => {
