@@ -9,9 +9,9 @@ export const DataProvider = ({children}) => {
     const { data: classesList, isLoading: classsesLoading, fetchData:fetchClasses} = useFetch("classes");
     
     const themeList = [
-        { name: "monokai" },
-        { name: "github" },
-        { name: "dracula" },
+        { id: "monokai", name: "Monokai" },
+        { id: "github", name: "Github" },
+        { id: "dracula", name: "Dracula" },
     ];
     
     const inheritedValue={

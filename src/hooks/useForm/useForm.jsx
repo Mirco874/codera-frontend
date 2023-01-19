@@ -10,7 +10,7 @@ export const useForm = (initialState = {}) => {
     } else {
       changeValue( name, value );
     }
-    
+    console.log(name,value)
   };
 
   const changeValue=(name, value)=>{

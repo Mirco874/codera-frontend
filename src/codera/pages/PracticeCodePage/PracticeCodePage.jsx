@@ -1,94 +1,8 @@
-import { useState } from "react";
-import { useFetch, useForm } from "../../../hooks";
-import { saveAs } from "file-saver";
 import { CodeEditor } from "../../components";
-import { runCode } from "../../helpers/runCode";
 import { toast, ToastContainer } from "react-toastify";
-import { findClassName, validateClassName } from "../../helpers/javaHelper";
 import "./PracticeCodePage.css";
 
-
-const themeList = [
-  { name: "monokai" },
-  { name: "github" },
-  { name: "dracula" },
-];
-
 export const PracticeCodePage = () => {
-
-  const editorForm = {
-    theme: themeList[0].name,
-    language: "",
-    snippets: false,
-    autocomplete: false,
-  };
-
-  const { data: languageList, isLoading } = useFetch("programming-languages");
-  const { theme, language, snippets, autocomplete, onFormChange } = useForm(editorForm);
-
-  const [code, setCode] = useState("");
-  const [outputConsole, setOutpuConsole] = useState("");
-
-  const sendCode = async (e) => {
-    e.preventDefault();
-    switch (language) {
-      case "java":
-        runJavaCode(code);
-        break;
-
-      case "javascript":
-        runInterpretedCode(code, "javascript");
-        break;
-
-      case "python":
-        runInterpretedCode(code, "python");
-        break;
-
-      default:
-        showSelectLanguageMessage();
-        break;
-    }
-  };
-
-  const onCodeChange = (value) => {
-    setCode(value);
-  };
-
-  const runJavaCode = async (code) => {
-    const className = findClassName(code);
-    const body = { className, code };
-
-    if (!validateClassName(className)) {
-      let message='';
-      if(className===null){
-        message = `no se encontro el nombre de la clase`;
-      }
-      else{
-        message = `Error de sintaxis en el nombre de la clase: ${className}`;
-      }
-      
-      toast.error(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      return;
-    }
-
-    const response = await runCode("/run/java", body);
-    setOutpuConsole(response.data.output);
-  };
-
-  const runInterpretedCode = async (code, path) => {
-    const body = {code};
-    const response = await runCode(`/run/${path}`, body);
-    setOutpuConsole(response.data.output);
-  };
 
 
   const showSelectLanguageMessage=()=>{
@@ -105,33 +19,6 @@ export const PracticeCodePage = () => {
     });
   }
 
-
-  const downloadCode = (e) => {
-    e.preventDefault();
-    const fileName = new Date().toDateString();
-
-    const file=new Blob([code],{type: 'text/plain;charset=utf-8'});
-    const extention= getExtention(language);
-    console.log(extention)
-    saveAs(file,`${fileName}.${extention}`)
-
-  };
-  
-  const getExtention=(language)=>{
-    switch (language) {
-      case "java": 
-        return "java"
-
-      case "javascript":
-        return "js"
-
-      case "python":
-        return "py"
-
-      default:
-        return "txt"
-    }
-  }
 
   return (
     <div className="main-content">

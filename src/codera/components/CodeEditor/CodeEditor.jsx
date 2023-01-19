@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types"
 import AceEditor from "react-ace";
 import { toast, ToastContainer } from "react-toastify";
 import { useForm } from "../../../hooks";
@@ -19,11 +20,13 @@ export const CodeEditor = ( { onInputChange } ) => {
     const [outputConsole, setOutpuConsole] = useState("");
 
     const editorForm = {
-        theme: themeList[0].name,
-        language: "",
+        theme: themeList[0],
+        language: {id: 1, name: 'java'},
         snippets: false,
         autocomplete: false,
-      };
+    };
+
+ 
 
     const { theme, language, snippets, autocomplete, onFormChange } = useForm(editorForm);  
     
@@ -33,13 +36,16 @@ export const CodeEditor = ( { onInputChange } ) => {
 
 
     const onCodeChange = (value) => {
-      onInputChange(value);
       setCode(value); 
+      onInputChange(value);
     };
 
     const sendCode = async (e) => {
         e.preventDefault();
-        switch (language) {
+
+        const { name }= language;
+
+        switch (name) {
             case "java":
             runJavaCode(code);
             break;
@@ -124,8 +130,9 @@ export const CodeEditor = ( { onInputChange } ) => {
         saveAs(file,`${fileName}.${extention}`)
     };
 
-    const getExtention=(language)=>{
-        switch (language) {
+    const getExtention=({name})=>{
+      
+        switch (name) {
           case "java": 
             return "java"
     
@@ -148,9 +155,9 @@ export const CodeEditor = ( { onInputChange } ) => {
             <li className="editor-option">
               <label className="body2">Theme: </label>
               <Selector
-                optionsList={themeList}
+                objectList={themeList}
                 name="theme"
-                defaultValue={theme}
+                indexDefaultValue={0}
                 onChange={onFormChange}
               />
             </li>
@@ -158,7 +165,7 @@ export const CodeEditor = ( { onInputChange } ) => {
             <li className="editor-option">
               <label className="body2">Language: </label>
               <Selector
-                optionsList={languageList}
+                objectList={languageList}
                 name="language"
                 onChange={onFormChange}
                 isLoading={languagesLoading}
@@ -197,12 +204,11 @@ export const CodeEditor = ( { onInputChange } ) => {
 
         </form>
 
-
         <AceEditor
             fontSize="16px"
             value={code}
-            mode={language}
-            theme={theme}
+            mode={language.name}
+            theme={theme.id}
             enableLiveAutocompletion={autocomplete}
             enableSnippets={snippets}
             onChange={onCodeChange}
@@ -214,4 +220,12 @@ export const CodeEditor = ( { onInputChange } ) => {
 
     </div>
   )
+}
+
+CodeEditor.defaultProps={
+  onInputChange:()=>{console.log("code editor text changed")}
+}
+
+CodeEditor.propTypes={
+  onInputChange:PropTypes.func
 }

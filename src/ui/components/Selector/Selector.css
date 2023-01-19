@@ -1,7 +1,8 @@
 select{
-    height: 25px;
+    height: 35px;
+    padding-inline: 7px;
     background-color: #FFFFFF;
-    border: 0.3px solid #969696 ;
+    border: 0.3px solid #dddddd ;
     border-radius: 5px;
 }
 
