@@ -7,3 +7,4 @@ export * from "./CreateClassModal/CreateClassModal";
 export * from "./CreateTaskForm/CreateTaskForm";
 export * from "./CodeEditorModal/CodeEditorModal";
 export * from "./CodeEditor/CodeEditor"
+export * from "./LanguageLabel/LanguageLabel";

@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types"
+import { saveAs } from "file-saver";
+import PropTypes from "prop-types";
+import { useContext, useEffect, useState } from "react";
 import AceEditor from "react-ace";
-import { toast, ToastContainer } from "react-toastify";
+import { BiDownload } from "react-icons/bi";
+import { CgPlayTrackNext } from "react-icons/cg";
+import { toast } from "react-toastify";
 import { useForm } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
+import { DefaultSelector } from "../../../ui/components";
 import { findClassName, validateClassName } from "../../helpers/javaHelper";
 import { runCode } from "../../helpers/runCode";
-import { saveAs } from "file-saver";
-import { DefaultSelector, Selector } from "../../../ui/components";
-import { CgPlayTrackNext } from "react-icons/cg";
-import { BiDownload } from "react-icons/bi";
 import { Terminal } from "../Terminal/Terminal";
-import "./CodeEditor.css"
+import "./CodeEditor.css";
 
 
 export const CodeEditor = ( { onInputChange } ) => {

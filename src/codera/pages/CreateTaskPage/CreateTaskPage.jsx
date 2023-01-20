@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
-import {useParams} from "react-router-dom";
-import {AiFillQuestionCircle} from "react-icons/ai";
+import { AiFillQuestionCircle } from "react-icons/ai";
+import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { useFetch, useForm, useModal } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
-import { Button, DefaultSelector, FilteredSelector, Selector, TextInput } from "../../../ui/components";
-import { CodeEditorModal } from "../../components";
-import "./CreateTaskPage.css"
+import { Button, DefaultSelector, FilteredSelector, TextInput } from "../../../ui/components";
+import { CodeEditorModal, LanguageLabel } from "../../components";
 import { post } from "../../helpers/post";
+import "./CreateTaskPage.css";
 
 
 export const CreateTaskPage = () => {
@@ -62,9 +63,37 @@ export const CreateTaskPage = () => {
       limitDate: new Date(limitDate)
     }
 
-    const response= await post("tasks",body);
+    try {
+        const response= await post("tasks",body);
+        toast.success('task created succesfully!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+    } catch (error) {
+      toast.error('fill in all the required fields', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
   }
 
+
+  const removeSelectedLanguage=(id)=>{
+    const newList=selectedLanguages.filter((language)=>(language.id!=id))
+    onFormChange( { target: { name: "selectedLanguages", value: newList } });
+  }
 
   return (
     <div className="main-content">
@@ -96,6 +125,13 @@ export const CreateTaskPage = () => {
                     <label>Language* </label>
                     <FilteredSelector name="selectedLanguages" totalItemsList={languageList} selectedItemsList={selectedLanguages} isLoading={languagesLoading} onChange={onFormChange}  />
                 </div>
+                <div>
+                { selectedLanguages.map(({id, name})=>(
+                    <LanguageLabel key={id} name={name} onClose={()=>{removeSelectedLanguage(id)}}/>
+                  )
+                )
+                }
+                </div>
 
                 <div className="line">
                     <p>Template code: </p>
@@ -111,7 +147,19 @@ export const CreateTaskPage = () => {
 
           </>)
       }
-
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
+        <ToastContainer />
       </section>
     </div>
   )
