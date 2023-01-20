@@ -7,7 +7,7 @@ import { ApplicationContext } from "../../../provider";
 import { findClassName, validateClassName } from "../../helpers/javaHelper";
 import { runCode } from "../../helpers/runCode";
 import { saveAs } from "file-saver";
-import { Selector } from "../../../ui/components";
+import { DefaultSelector, Selector } from "../../../ui/components";
 import { CgPlayTrackNext } from "react-icons/cg";
 import { BiDownload } from "react-icons/bi";
 import { Terminal } from "../Terminal/Terminal";
@@ -25,8 +25,6 @@ export const CodeEditor = ( { onInputChange } ) => {
         snippets: false,
         autocomplete: false,
     };
-
- 
 
     const { theme, language, snippets, autocomplete, onFormChange } = useForm(editorForm);  
     
@@ -147,6 +145,12 @@ export const CodeEditor = ( { onInputChange } ) => {
         }
       }
 
+  const onSelectorChange=( event , atributeName )=>{
+    const { value: optionSelected } = event.target;
+    const objectSelected = JSON.parse( optionSelected );
+    onFormChange( { target: { name: atributeName, value: objectSelected } });
+  }
+
   return (
     <div className="code-editor">
          <form className="options-section">
@@ -154,7 +158,7 @@ export const CodeEditor = ( { onInputChange } ) => {
 
             <li className="editor-option">
               <label className="body2">Theme: </label>
-              <Selector
+              <DefaultSelector
                 objectList={themeList}
                 name="theme"
                 indexDefaultValue={0}
@@ -164,7 +168,7 @@ export const CodeEditor = ( { onInputChange } ) => {
 
             <li className="editor-option">
               <label className="body2">Language: </label>
-              <Selector
+              <DefaultSelector
                 objectList={languageList}
                 name="language"
                 onChange={onFormChange}

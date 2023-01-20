@@ -6,15 +6,12 @@ export const Selector = ({ name, objectList , indexDefaultValue,  onChange, isLo
   const existObject= objectList? objectList[indexDefaultValue] : null;
   const defaultValue=existObject ? existObject.id : name ;
  
-  const handleChange=( event )=>{
-    const { value: optionSelected } = event.target;
-    const objectSelected = JSON.parse( optionSelected );
-    onChange( { target: { name, value: objectSelected } });
+  const onSelectorChange=(event)=>{
+    onChange( event, name );
   }
- 
-  console.log(defaultValue)
+
   return (
-    <select className="body2" name={name} onChange={handleChange} defaultValue={defaultValue}>
+    <select className="body2" name={name} onChange={onSelectorChange} defaultValue={defaultValue}>
       
         <option className="body2" disabled  >
           {name}

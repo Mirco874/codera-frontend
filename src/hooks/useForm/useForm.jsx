@@ -4,7 +4,9 @@ export const useForm = (initialState = {}) => {
   const [formData, setFormData] = useState(initialState);
 
   const onFormChange = ({ target }) => {
-    const { value, name, type } = target;
+  
+    const { name, value, type } = target;
+    console.log (name, value, type)
     if (type === "checkbox") {
       changeValue( name, !formData[ name ] );  
     } else {

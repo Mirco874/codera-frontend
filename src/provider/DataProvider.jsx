@@ -13,6 +13,17 @@ export const DataProvider = ({children}) => {
         { id: "github", name: "Github" },
         { id: "dracula", name: "Dracula" },
     ];
+
+    const scoreList=[
+      { id: 100, name:"100" },
+      { id: 70, name:"70" },
+      { id: 50, name:"50" },
+      { id: 30, name:"30" },
+      { id: 10, name:"10" },
+      { id: 5, name:"5"},
+  ]
+
+ 
     
     const inheritedValue={
         languageList,
@@ -21,7 +32,9 @@ export const DataProvider = ({children}) => {
         classesList,
         classsesLoading,
         fetchClasses,
-        themeList} 
+        themeList,
+        scoreList
+      } 
 
   return (
     <ApplicationContext.Provider value={inheritedValue} >
