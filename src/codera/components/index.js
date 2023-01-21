@@ -8,3 +8,7 @@ export * from "./CreateTaskForm/CreateTaskForm";
 export * from "./CodeEditorModal/CodeEditorModal";
 export * from "./CodeEditor/CodeEditor"
 export * from "./LanguageLabel/LanguageLabel";
+export * from "./TaskCard/TaskCard";
+export * from "./AllowedLanguages/AllowedLanguages";
+export * from "./TaskDetail/TaskDetail";
+export * from "./CommentarySection/CommentarySection";

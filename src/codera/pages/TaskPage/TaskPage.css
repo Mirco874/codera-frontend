@@ -1,0 +1,6 @@
+.detail{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding-inline: 20px;
+}

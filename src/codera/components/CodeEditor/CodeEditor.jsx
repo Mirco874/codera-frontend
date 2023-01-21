@@ -13,8 +13,7 @@ import { runCode } from "../../helpers/runCode";
 import { Terminal } from "../Terminal/Terminal";
 import "./CodeEditor.css";
 
-
-export const CodeEditor = ( { onInputChange } ) => {
+export const CodeEditor = ( { inputName, onInputChange } ) => {
     const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");

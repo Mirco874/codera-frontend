@@ -1,0 +1,12 @@
+.commentary-section{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+.commentary-section button{
+    margin-top: 2vh;
+    align-self: flex-end;
+}

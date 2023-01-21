@@ -1,0 +1,24 @@
+.label{
+    display: flex;
+    height: 35px;
+    width: 120px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    color: black;
+    border-radius: 10px;
+    padding-inline: 5px ;
+}
+
+.danger{
+    background-color: #F36464 ;
+}
+
+.warning{
+    background-color: #FFED8D ;
+}
+
+.secure{
+    background-color: #e6e6e6 ;
+
+}

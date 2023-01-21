@@ -1,0 +1,37 @@
+.card{
+    border: 1px solid #767676;
+    background-color: white;
+    border-radius: 10px;
+    width: 100vh;
+    margin-left: 10vh;
+    padding-inline:20px ;
+    margin: 16px;
+}
+
+.header{
+    margin-top: 10px;
+    height: 25px ;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.limit-date{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+.footer{
+    margin-block: 8px ;
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
