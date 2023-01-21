@@ -13,7 +13,8 @@ import { runCode } from "../../helpers/runCode";
 import { Terminal } from "../Terminal/Terminal";
 import "./CodeEditor.css";
 
-export const CodeEditor = ( { inputName, 
+export const CodeEditor = ( { 
+    onSelectorChange, 
     onInputChange, 
     showThemesSelector, 
     showLanguagesSelector, 
@@ -156,10 +157,9 @@ export const CodeEditor = ( { inputName,
         }
       }
 
-  const onSelectorChange=( event , atributeName )=>{
-    const { value: optionSelected } = event.target;
-    const objectSelected = JSON.parse( optionSelected );
-    onFormChange( { target: { name: atributeName, value: objectSelected } });
+  const onSelectorUpdate=(e)=>{
+    onSelectorChange(e);
+    onFormChange(e);
   }
 
   return (
@@ -176,7 +176,7 @@ export const CodeEditor = ( { inputName,
                   objectList={themeList}
                   name="theme"
                   indexDefaultValue={0}
-                  onChange={onFormChange}
+                  onChange={onSelectorUpdate}
                 />
               </li>
             )
@@ -190,7 +190,7 @@ export const CodeEditor = ( { inputName,
                 <DefaultSelector
                   objectList={languageList}
                   name="language"
-                  onChange={onFormChange}
+                  onChange={onSelectorUpdate}
                   isLoading={languagesLoading}
                 />
               </li>
@@ -266,6 +266,7 @@ export const CodeEditor = ( { inputName,
 
 CodeEditor.defaultProps={
   onInputChange:()=>{console.log("code editor text changed")},
+  onSelectorChange:()=>{console.log("selector changed")},
   showThemesSelector:true, 
   showLanguagesSelector:true, 
   showSnippetsCheckbox:true, 
@@ -278,6 +279,7 @@ CodeEditor.defaultProps={
 
 CodeEditor.propTypes={
   onInputChange:PropTypes.func,
+  onSelectorChange:PropTypes.func,
   showThemesSelector:PropTypes.bool, 
   showLanguagesSelector:PropTypes.bool, 
   showSnippetsCheckbox:PropTypes.bool, 
