@@ -20,7 +20,9 @@ export const CodeEditor = ( { inputName,
     showSnippetsCheckbox, 
     showAutoCompleteCheckbox, 
     showRunButton,
-    showDownloadCodeButton
+    showDownloadCodeButton,
+    height,
+    width,
   } ) => 
   {
    
@@ -253,8 +255,8 @@ export const CodeEditor = ( { inputName,
             enableSnippets={snippets}
             onChange={onCodeChange}
             editorProps={{ $blockScrolling: true }}
-            height="50vh"
-            width="100%"
+            height={height}
+            width={width}
           />
           <Terminal text={outputConsole} />
 
@@ -269,7 +271,9 @@ CodeEditor.defaultProps={
   showSnippetsCheckbox:true, 
   showAutoCompleteCheckbox:true,
   showRunButton:true,
-  showDownloadCodeButton:true
+  showDownloadCodeButton:true,
+  height:"50vh",
+  width:"100%"
 }
 
 CodeEditor.propTypes={
@@ -279,5 +283,7 @@ CodeEditor.propTypes={
   showSnippetsCheckbox:PropTypes.bool, 
   showAutoCompleteCheckbox:PropTypes.bool,
   showRunButton:PropTypes.bool,
-  showDownloadCodeButton:PropTypes.bool
+  showDownloadCodeButton:PropTypes.bool,
+  height:PropTypes.string,
+  width:PropTypes.string
 }

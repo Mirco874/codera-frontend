@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../../hooks";
+import { Button } from "../../../ui/components";
 import { CodeEditor, CommentarySection, TaskDetail } from "../../components";
 import "./TaskPage.css";
 
@@ -22,8 +23,11 @@ export const TaskPage = () => {
                 
                 <div className="right-section">
                     <CodeEditor
-                     showDownloadCodeButton={false}   
+                     showDownloadCodeButton={false}
+                     height="45vh"   
                     />
+                    <Button text="Send task" height="35px" width="130px" borderRadius="10px" />
+
                 </div>
             </>
         }
