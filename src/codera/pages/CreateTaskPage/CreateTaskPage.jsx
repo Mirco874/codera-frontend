@@ -65,27 +65,10 @@ export const CreateTaskPage = () => {
 
     try {
         const response= await post("tasks",body);
-        toast.success('task created succesfully!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
+        registerLanguages(response.data.id)
+        
     } catch (error) {
-      toast.error('fill in all the required fields', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
+
     }
   }
 
@@ -93,6 +76,15 @@ export const CreateTaskPage = () => {
   const removeSelectedLanguage=(id)=>{
     const newList=selectedLanguages.filter((language)=>(language.id!=id))
     onFormChange( { target: { name: "selectedLanguages", value: newList } });
+  }
+
+
+  const registerLanguages = async(taskId) => {
+    selectedLanguages.forEach( async ({id:languageId}) => {
+      const body={ taskId, languageId };
+      const response = await post("/language-asignation", body);
+      console.log(response)
+    });
   }
 
   return (
