@@ -21,7 +21,9 @@ export const TaskPage = () => {
                 </div>
                 
                 <div className="right-section">
-                    <CodeEditor />
+                    <CodeEditor
+                     showDownloadCodeButton={false}   
+                    />
                 </div>
             </>
         }

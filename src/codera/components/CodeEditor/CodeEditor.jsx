@@ -13,8 +13,18 @@ import { runCode } from "../../helpers/runCode";
 import { Terminal } from "../Terminal/Terminal";
 import "./CodeEditor.css";
 
-export const CodeEditor = ( { inputName, onInputChange } ) => {
-    const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
+export const CodeEditor = ( { inputName, 
+    onInputChange, 
+    showThemesSelector, 
+    showLanguagesSelector, 
+    showSnippetsCheckbox, 
+    showAutoCompleteCheckbox, 
+    showRunButton,
+    showDownloadCodeButton
+  } ) => 
+  {
+   
+  const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");
 
@@ -155,56 +165,83 @@ export const CodeEditor = ( { inputName, onInputChange } ) => {
          <form className="options-section">
           <ul className="editor-options">
 
-            <li className="editor-option">
-              <label className="body2">Theme: </label>
-              <DefaultSelector
-                objectList={themeList}
-                name="theme"
-                indexDefaultValue={0}
-                onChange={onFormChange}
-              />
-            </li>
+          {
+            showThemesSelector &&
+            (
+              <li className="editor-option">
+                <label className="body2">Theme: </label>
+                <DefaultSelector
+                  objectList={themeList}
+                  name="theme"
+                  indexDefaultValue={0}
+                  onChange={onFormChange}
+                />
+              </li>
+            )
+          }
 
-            <li className="editor-option">
-              <label className="body2">Language: </label>
-              <DefaultSelector
-                objectList={languageList}
-                name="language"
-                onChange={onFormChange}
-                isLoading={languagesLoading}
-              />
-            </li>
+          {
+            showLanguagesSelector &&
+            (
+              <li className="editor-option">
+                <label className="body2">Language: </label>
+                <DefaultSelector
+                  objectList={languageList}
+                  name="language"
+                  onChange={onFormChange}
+                  isLoading={languagesLoading}
+                />
+              </li>
+            )
+          }
 
-            <li className="editor-option">
-              <label className="body2">Enable Snippets: </label>
-              <input
-                type="checkbox"
-                name="snippets"
-                checked={snippets}
-                onChange={onFormChange}
-              />
-            </li>
+          {
+            showSnippetsCheckbox &&
+            (
+              <li className="editor-option">
+                <label className="body2">Enable Snippets: </label>
+                <input
+                  type="checkbox"
+                  name="snippets"
+                  checked={snippets}
+                  onChange={onFormChange}
+                />
+              </li>
+            )
+          }
 
-            <li className="editor-option">
-              <p className="body2">Enable Autocomplete: </p>
-              <input
-                type="checkbox"
-                name="autocomplete"
-                checked={autocomplete}
-                onChange={onFormChange}
-              />
-            </li>
-
+          {
+            showAutoCompleteCheckbox &&
+            (
+              <li className="editor-option">
+                <p className="body2">Enable Autocomplete: </p>
+                <input
+                  type="checkbox"
+                  name="autocomplete"
+                  checked={autocomplete}
+                  onChange={onFormChange}
+                />
+              </li>
+            )
+          }
           </ul>
 
-          <button className="button-text editor-button" onClick={sendCode}>
-            Run <CgPlayTrackNext size={40} />
-          </button>
-
-          <button className="button-text editor-button" onClick={downloadCode}>
-            Download code <BiDownload size={25} />
-          </button>
-
+        {
+          showRunButton && 
+          (
+            <button className="button-text editor-button" onClick={sendCode}>
+              Run <CgPlayTrackNext size={40} />
+            </button>
+          )
+        }
+        {
+          showDownloadCodeButton &&
+          (
+            <button className="button-text editor-button" onClick={downloadCode}>
+              Download code <BiDownload size={25} />
+            </button>
+          )
+        }
         </form>
 
         <AceEditor
@@ -226,9 +263,21 @@ export const CodeEditor = ( { inputName, onInputChange } ) => {
 }
 
 CodeEditor.defaultProps={
-  onInputChange:()=>{console.log("code editor text changed")}
+  onInputChange:()=>{console.log("code editor text changed")},
+  showThemesSelector:true, 
+  showLanguagesSelector:true, 
+  showSnippetsCheckbox:true, 
+  showAutoCompleteCheckbox:true,
+  showRunButton:true,
+  showDownloadCodeButton:true
 }
 
 CodeEditor.propTypes={
-  onInputChange:PropTypes.func
+  onInputChange:PropTypes.func,
+  showThemesSelector:PropTypes.bool, 
+  showLanguagesSelector:PropTypes.bool, 
+  showSnippetsCheckbox:PropTypes.bool, 
+  showAutoCompleteCheckbox:PropTypes.bool,
+  showRunButton:PropTypes.bool,
+  showDownloadCodeButton:PropTypes.bool
 }
