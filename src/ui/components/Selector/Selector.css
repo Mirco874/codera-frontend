@@ -1,9 +1,8 @@
-select{
+.selector{
     height: 35px;
     padding-inline: 7px;
     background-color: #FFFFFF;
     border: 0.3px solid #dddddd ;
     border-radius: 5px;
+    cursor: pointer;
 }
-
-

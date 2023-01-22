@@ -24,9 +24,14 @@ export const CodeEditor = ( {
     showDownloadCodeButton,
     height,
     width,
+    readOnly,
+    defaultCode,
+    defaultLanguage
   } ) => 
   {
    
+
+
   const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");
@@ -53,8 +58,8 @@ export const CodeEditor = ( {
     const sendCode = async (e) => {
         e.preventDefault();
 
-        const { name }= language;
-
+        const name= defaultLanguage!=="" ?  language.name :defaultLanguage.name
+        alert(name)
         switch (name) {
             case "java":
             runJavaCode(code);
@@ -246,7 +251,24 @@ export const CodeEditor = ( {
         }
         </form>
 
-        <AceEditor
+        {
+          readOnly ? 
+            <AceEditor
+            readOnly={readOnly}
+            fontSize="16px"
+            value={defaultCode}
+            mode={defaultLanguage.name}
+            theme={theme.id}
+            enableLiveAutocompletion={autocomplete}
+            enableSnippets={snippets}
+            onChange={onCodeChange}
+            editorProps={{ $blockScrolling: true }}
+            height={height}
+            width={width}
+          />
+          :
+          (
+            <AceEditor
             fontSize="16px"
             value={code}
             mode={language.name}
@@ -258,8 +280,10 @@ export const CodeEditor = ( {
             height={height}
             width={width}
           />
-          <Terminal text={outputConsole} />
+          )
+        }
 
+          <Terminal text={outputConsole} />
     </div>
   )
 }
@@ -274,7 +298,10 @@ CodeEditor.defaultProps={
   showRunButton:true,
   showDownloadCodeButton:true,
   height:"50vh",
-  width:"100%"
+  width:"100%",
+  readOnly: false,
+  defaultCode: "",
+  defaultLanguage:{id:"", name:""}
 }
 
 CodeEditor.propTypes={
@@ -287,5 +314,8 @@ CodeEditor.propTypes={
   showRunButton:PropTypes.bool,
   showDownloadCodeButton:PropTypes.bool,
   height:PropTypes.string,
-  width:PropTypes.string
+  width:PropTypes.string,
+  readOnly: PropTypes.bool, 
+  defaultCode: PropTypes.string, 
+  defaultLanguage: PropTypes.object
 }

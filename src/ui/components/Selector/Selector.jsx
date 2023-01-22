@@ -11,7 +11,7 @@ export const Selector = ({ name, objectList , indexDefaultValue,  onChange, isLo
   }
 
   return (
-    <select className="body2" name={name} onChange={onSelectorChange} defaultValue={defaultValue}>
+    <select className="body2 selector" name={name} onChange={onSelectorChange} defaultValue={defaultValue} >
       
         <option className="body2" disabled  >
           {name}

@@ -4,4 +4,7 @@ export * from "./PracticeCodePage/PracticeCodePage";
 export * from "./LandingPage/LandingPage";
 export * from "./CreateTaskPage/CreateTaskPage";
 export * from "./PendingTaskPage/PendingTaskPage";
-export * from "./TaskPage/TaskPage"
+export * from "./TaskPage/TaskPage";
+export * from "./MyDeliveriesPage/MyDeliveriesPage";
+export * from "./MyDeliveryPage/MyDeliveryPage";
+export * from "./CheckTasksPage/CheckTasksPage";

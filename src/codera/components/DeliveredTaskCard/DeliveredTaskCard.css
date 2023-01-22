@@ -1,0 +1,39 @@
+.task-delivered-card{
+    border: 1px solid #767676;
+    margin: 10px;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.title{
+    padding: 1px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.body{
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.body p{
+    margin-block: 5px;
+}
+
+.body .button{
+    align-self:center;
+}
+
+.blue-line{
+    display: block;
+    height: 25px;
+    width: 5px;
+    background-color: blue;
+    margin-right: 5px;
+}
+

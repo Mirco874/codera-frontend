@@ -12,3 +12,5 @@ export * from "./TaskCard/TaskCard";
 export * from "./AllowedLanguages/AllowedLanguages";
 export * from "./TaskDetail/TaskDetail";
 export * from "./CommentarySection/CommentarySection";
+export * from "./DeliveredTaskCard/DeliveredTaskCard";
+export * from "./DeliveryDetail/DeliveryDetail";

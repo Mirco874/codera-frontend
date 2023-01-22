@@ -8,11 +8,13 @@ import "./TaskPage.css";
 export const TaskPage = () => {
   const { taskId }= useParams();
 
-  const { data: task, isLoading }= useFetch(`tasks/${taskId}`);
+  const { data: task, isLoading: loadingTask }= useFetch(`tasks/${taskId}`);
 
   const initialForm={ code:"", languageId:0 }
 
   const { code, languageId, changeValue }= useForm( initialForm );
+
+
 
   const onUpdateLanguageId=(e)=>{
     const { value } =e.target;
@@ -35,7 +37,7 @@ export const TaskPage = () => {
       <section className="main-layout">
         <div className="detail">
         {
-            isLoading ? (<>Loading</>)
+            loadingTask ? (<>Loading</>)
             :
             <>
                 <div className="left-section">
