@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 import { NavBar } from '../../ui/components';
 import { SideBar } from '../components';
-import { CheckTasksPage, ClassPage, 
+import { CheckTaskDelivery, CheckTasksPage, ClassPage, 
          CreateTaskPage, 
          MyClassesPage, 
          MyDeliveriesPage, 
@@ -24,6 +24,7 @@ export const CoderaRoutes = () => {
             <Route path="/classes/:classId/delivered-tasks/:deliveryId" element={<MyDeliveryPage/>} />
             <Route path="/classes/:classId/create-task" element={<CreateTaskPage/>} />
             <Route path="/classes/:classId/check-tasks" element={<CheckTasksPage/>} />
+            <Route path="/classes/:classId/check-tasks/:taskId" element={<CheckTaskDelivery/>} />      
             <Route path="practice" element={<PracticeCodePage/>} />
         </Routes>
     </div>

@@ -8,3 +8,4 @@ export * from "./TaskPage/TaskPage";
 export * from "./MyDeliveriesPage/MyDeliveriesPage";
 export * from "./MyDeliveryPage/MyDeliveryPage";
 export * from "./CheckTasksPage/CheckTasksPage";
+export * from "./CheckTaskDelivery/CheckTaskDelivery";
