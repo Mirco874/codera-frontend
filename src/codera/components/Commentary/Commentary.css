@@ -1,0 +1,17 @@
+.commentary{
+     width: 100%;
+     display: flex;
+     margin-bottom: 20px;
+     justify-content: space-around;
+}
+
+.commentary .student-photo{
+    height: 55px;
+    width: 55px;
+    margin-right: 10px;
+}
+
+.header { 
+    margin-bottom: 16px;
+}
+
