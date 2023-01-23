@@ -8,6 +8,7 @@ import { CheckTaskDelivery, CheckTasksPage, ClassPage,
          MyDeliveryPage, 
          PendingTaskPage, 
          PracticeCodePage, 
+         ReviewDeliveryPage, 
          TaskPage } from '../pages';
 
 export const CoderaRoutes = () => {
@@ -24,7 +25,8 @@ export const CoderaRoutes = () => {
             <Route path="/classes/:classId/delivered-tasks/:deliveryId" element={<MyDeliveryPage/>} />
             <Route path="/classes/:classId/create-task" element={<CreateTaskPage/>} />
             <Route path="/classes/:classId/check-tasks" element={<CheckTasksPage/>} />
-            <Route path="/classes/:classId/check-tasks/:taskId" element={<CheckTaskDelivery/>} />      
+            <Route path="/classes/:classId/check-tasks/:taskId" element={<CheckTaskDelivery/>} /> 
+            <Route path="/classes/:classId/check-tasks/:taskId/delivery/:deliveryId" element={<ReviewDeliveryPage/>} /> 
             <Route path="practice" element={<PracticeCodePage/>} />
         </Routes>
     </div>
