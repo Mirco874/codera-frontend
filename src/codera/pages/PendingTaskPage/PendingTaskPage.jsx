@@ -1,14 +1,20 @@
 import { useFetch } from "../../../hooks"
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { TaskCard } from "../../components";
 import "./PendingTaskPage.css"
 
 export const PendingTaskPage = () => {
     const {classId} = useParams();
+    
     const { data:tasks, isLoading  } =useFetch(`tasks/todo?classId=${classId}`);
-    const { data: classGroup ,
-      isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
+    
+    const { data: classGroup , isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
 
+    const navigate= useNavigate();
+
+    const goToTask= (taskId) =>{
+      navigate(taskId.toString());
+  }
 
   return (
     <div className="main-content">
@@ -19,7 +25,14 @@ export const PendingTaskPage = () => {
         }
         <div className="tasks">
           {
-            (!isLoading) &&  tasks.map((task)=>(<TaskCard task={task}/>) )
+            (!isLoading) &&  tasks.map((task)=>(
+            <TaskCard 
+              task={task}
+              buttonText="Check task"
+              onClickButton={()=>{goToTask(task.id)}}
+            />
+            ) 
+            )
           } 
         </div>
       </section>
