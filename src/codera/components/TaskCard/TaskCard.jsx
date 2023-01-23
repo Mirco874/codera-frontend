@@ -27,9 +27,6 @@ export const TaskCard = ({ task,
             limitDate,
             allowedLanguages } =task;
     
-    const goToTask= () =>{
-        navigate(id.toString());
-    }
 
     return (
         <div className="card">
