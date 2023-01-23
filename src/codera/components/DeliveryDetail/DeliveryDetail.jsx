@@ -1,9 +1,33 @@
+import { LanguageIcon } from "../../../ui/components";
 import { getDate, getTime } from "../../helpers/date"
-import "./DeliveryDetail.css"
+import PropTypes from "prop-types";
 
-export const DeliveryDetail = ({deliveryDate, score}) => {
+import "./DeliveryDetail.css"
+import { LanguageLabel } from "../LanguageLabel/LanguageLabel";
+
+export const DeliveryDetail = ({ student, selectedLanguage,  deliveryDate, score }) => {
+  const { email, fullName } =student;
+  
   return (
-    <div>
+    <div className="">
+      {
+        student !==null && (
+          <>
+            <h4>Student: </h4>
+            <p> <b>Name: </b>{fullName} </p>
+            <p> <b>Email: </b>{email} </p>
+          </>
+          )
+      }
+      {
+      selectedLanguage !== null && (
+        <div className="selected-languages">
+        <p><b>Selected Language: </b>{selectedLanguage.name} </p>
+
+        </div>
+        )
+      }
+
         <p> <b>Delivered:</b> { `${getDate(deliveryDate)} ${getTime(deliveryDate)}` }</p>
         <p> <b>Score:</b> {
             score===null ? <>Pending.</>
@@ -13,4 +37,18 @@ export const DeliveryDetail = ({deliveryDate, score}) => {
         }</p>
     </div>
   )
+}
+
+DeliveryDetail.defaultProps={
+  student: null , 
+  selectedLanguage: null,  
+  deliveryDate: "" , 
+  score: ""
+}
+
+DeliveryDetail.propTypes={
+  student: PropTypes.object , 
+  selectedLanguage: PropTypes.object,  
+  deliveryDate: PropTypes.string, 
+  score: PropTypes.string
 }
