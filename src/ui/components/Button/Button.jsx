@@ -33,6 +33,20 @@ export const Button = ({ text, type, height, width, variation, borderRadius, onC
           </button>
         );
 
+
+        case "purple":
+          return (
+            <button
+              className="button purple-button button-text"
+              style={{ height, width, borderRadius }}
+              type={variation}
+              onClick={handleClick}
+            >
+            {text}
+            </button>
+          );
+
+
     default:
       return (
         <button
