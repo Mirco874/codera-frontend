@@ -12,7 +12,6 @@ export const CommentarySection = ({ deliveryId }) => {
   const { data: previusCommentaries,
           isLoading: loadingCommentaries, 
           fetchData: reloadCommentaries } =useFetch(`comments?deliveryId=${deliveryId}`);
-    console.log(previusCommentaries)
 
   const onCommentaryChange = ({ target }) =>{
     setCommentary(target.value);
@@ -25,9 +24,10 @@ export const CommentarySection = ({ deliveryId }) => {
                   userId: id,
                   content: commentary};
 
-    const response = await post( "comments", body );
-    console.log(response);
-    reloadCommentaries();
+    await post( "comments", body );
+
+    setTimeout( ()=> {reloadCommentaries();}, 1000);
+
   }
 
   return (

@@ -6,7 +6,10 @@
     align-items: center;
 }
 
+.commentary-section textarea{
+    margin-bottom: 16px;
+}
+
 .commentary-section .button{
-    margin-top: 10px;
     align-self: flex-end;
 }
