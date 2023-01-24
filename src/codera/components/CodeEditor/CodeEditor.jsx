@@ -26,11 +26,20 @@ export const CodeEditor = ( {
     width,
     readOnly,
     defaultCode,
-    defaultLanguage
+    defaultLanguage,
+    defaultLanguageList
   } ) => 
   {
-   
-  const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
+
+    const dataContext =useContext(ApplicationContext);
+
+    const languageList=defaultLanguageList.length===0 ? dataContext.languageList : defaultLanguageList
+
+    const { languagesLoading,
+            fetchLanguages, 
+            themeList} =dataContext;
+
+
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");
 
@@ -56,7 +65,7 @@ export const CodeEditor = ( {
     const sendCode = async (e) => {
         e.preventDefault();
         
-        const programmingLanguage = defaultLanguage==="" ?  language.name : defaultLanguage.name;
+        const programmingLanguage = defaultLanguage.name==="" ?  language.name : defaultLanguage.name;
 
         const codeToExcecute = defaultCode ==="" ? code : defaultCode ;  
 
@@ -299,7 +308,8 @@ CodeEditor.defaultProps={
   width:"100%",
   readOnly: false,
   defaultCode: "",
-  defaultLanguage:{id:"", name:""}
+  defaultLanguage:{id:"", name:""},
+  defaultLanguageList: []
 }
 
 CodeEditor.propTypes={
@@ -315,5 +325,6 @@ CodeEditor.propTypes={
   width:PropTypes.string,
   readOnly: PropTypes.bool, 
   defaultCode: PropTypes.string, 
-  defaultLanguage: PropTypes.object
+  defaultLanguage: PropTypes.object,
+  defaultLanguageList: PropTypes.array
 }
