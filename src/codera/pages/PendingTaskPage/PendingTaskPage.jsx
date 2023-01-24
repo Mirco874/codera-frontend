@@ -1,6 +1,6 @@
 import { useFetch } from "../../../hooks"
 import { useParams, useNavigate } from "react-router-dom";
-import { TaskCard } from "../../components";
+import { LinkedText, TaskCard } from "../../components";
 import "./PendingTaskPage.css"
 
 export const PendingTaskPage = () => {
@@ -15,13 +15,30 @@ export const PendingTaskPage = () => {
     const goToTask= (taskId) =>{
       navigate(taskId.toString());
   }
-
+    
   return (
     <div className="main-content">
       <section className="main-layout">
         {
           loadingClassGroup ? ( <>Loading..</>  ) : 
-          (<h2 className="h6 section-title"> My classes {">"} { classGroup.className }  {">"} New tasks</h2>)
+          (
+          <h2 className="header6 section-title">
+
+            <LinkedText className="header6" path="/classes">
+              My classes
+            </LinkedText> 
+
+              {">"} 
+
+            <LinkedText className="header6" back={true}>
+              { classGroup.className } 
+            </LinkedText>
+
+              {"> "} 
+            
+              Pending tasks
+          </h2> 
+          )
         }
         <div className="tasks">
           {

@@ -1,29 +1,57 @@
 import {useParams} from "react-router-dom";
 import { useFetch } from "../../../hooks";
-import { StudentDeliveryCard } from "../../components";
+import { LinkedText, StudentDeliveryCard } from "../../components";
 
 import "./CheckTaskDelivery.css";
 
 export const CheckTaskDelivery = () => {
-  const {taskId}= useParams();
+  const { taskId, classId }= useParams();
+  
   const { data:deliveries, isLoading: deliveriesLoading }= useFetch(`task-deliveries?taskId=${taskId}`);
-  console.log(deliveries)
+
+  const { data: classGroup , isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
+
+  const { data: task , isLoading: loadingTask } = useFetch(`tasks/${taskId}`);
 
   return (
     <div className="main-content">
       <section className="main-layout">
         <div className="task-deliveries">
           {
-            deliveriesLoading ? <>Loading</>
+            (loadingClassGroup || deliveriesLoading || loadingTask) ? <>Loading</>
             :
-            <ul className="card-deliveries">
-              {deliveries.map((delivery)=>(
-                <li>
-                <StudentDeliveryCard delivery={delivery}/>
-              </li>
-              )
-              )}
-            </ul>
+            <>
+              <h2 className="header6 section-title">
+                <LinkedText className="header6" path="/classes">
+                  My classes
+                </LinkedText> 
+
+                  {">"} 
+
+                <LinkedText className="header6" path={ `/classes/${classGroup.id}` }>
+                  { classGroup.className } 
+                </LinkedText>
+
+                  {">"} 
+                <LinkedText className="header6" back={true}>
+                  check tasks
+                </LinkedText>
+                  {"> "} 
+                  {task.taskTitle}
+              </h2> 
+
+              <ul className="card-deliveries">
+                {deliveries.map(
+                  (delivery)=>
+                  (
+                    <li>
+                    <StudentDeliveryCard delivery={delivery}/>
+                    </li>
+                  )
+                )
+                }
+              </ul>
+            </>
           }
 
 

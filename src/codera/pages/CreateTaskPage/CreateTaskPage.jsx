@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useFetch, useForm, useModal } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
 import { Button, DefaultSelector, FilteredSelector, TextInput } from "../../../ui/components";
-import { CodeEditorModal, LanguageLabel } from "../../components";
+import { CodeEditorModal, LanguageLabel, LinkedText } from "../../components";
 import { post } from "../../helpers/post";
 import "./CreateTaskPage.css";
 
@@ -92,8 +92,25 @@ export const CreateTaskPage = () => {
       <section className="main-layout">
         {loadingClassGroup ? ( <>Loading..</>  ) : 
         ( <>
-            <h2 className="h6 section-title"> My classes {">"} { classGroup.className }  {">"} New tasks</h2>
-            <h2 className="h6 section-title">New task</h2>
+            <h2 className="header6 section-title">
+
+              <LinkedText className="header6" path="/classes">
+                My classes
+              </LinkedText> 
+
+                {">"} 
+
+              <LinkedText className="header6" back={true}>
+                { classGroup.className } 
+              </LinkedText>
+
+                {"> "} 
+
+                new task
+            </h2> 
+        
+
+            <h2 className="header6 section-title">New task</h2>
             <form >
                 <label>Task title*</label>
                 <TextInput type="text" placeholder="Task title" name="taskTitle" width="100%" value={taskTitle} onChange={onFormChange}/>

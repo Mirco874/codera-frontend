@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import PureModal from 'react-pure-modal';
-import { TaskCard } from "../../components";
+import { LinkedText, TaskCard } from "../../components";
 import {useFetch, useModal} from "../../../hooks";
 import { Button } from "../../../ui/components";
 import { removeFromAPI } from "../../helpers/removeFromAPI";
@@ -12,6 +12,8 @@ export const CheckTasksPage = () => {
     const { classId}=useParams();
 
     const{ data: taskList, isLoading: loadingTasks, fetchData: fetchTasks }= useFetch(`tasks?classGroupId=${classId}`);
+    
+    const { data: classGroup , isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
 
     const { open, onOpenModal, onCloseModal } =useModal();
 
@@ -43,6 +45,33 @@ export const CheckTasksPage = () => {
   return (
     <div className="main-content">
       <section className="main-layout">
+        <div>
+
+        {
+          loadingClassGroup ? ( <>Loading..</>  ) : 
+          (
+          <h2 className="header6 section-title">
+
+            <LinkedText className="header6" path="/classes">
+              My classes
+            </LinkedText> 
+
+              {">"} 
+
+            <LinkedText className="header6" back={true}>
+              { classGroup.className } 
+            </LinkedText>
+
+              {"> "} 
+              check tasks
+
+          </h2> 
+          )
+        }
+
+
+
+
         {loadingTasks? <>loading</> 
         :
         <ul className="tasks">
@@ -64,7 +93,7 @@ export const CheckTasksPage = () => {
             }
         </ul>
         }
-
+        </div>
     <PureModal
       header="Are you sure that you want to delete this task?"
       isOpen={open}

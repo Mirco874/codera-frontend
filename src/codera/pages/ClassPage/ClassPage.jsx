@@ -14,7 +14,6 @@ export const ClassPage = () => {
   const { data, isLoading } = useFetch(`classes/${classId}`);
 
   const getUserId = () => {
-    console.log("loaded user id");
     return getUserInformation().id;
   };
 
@@ -24,7 +23,7 @@ export const ClassPage = () => {
         {isLoading ? ( <>Loading</>  ) : 
         ( <>
             <h2 className="header6 section-title"> 
-                <LinkedText className="header6" path="/clases" >My classes</LinkedText> {">"} {data.className} 
+                <LinkedText className="header6" path="/classes">My classes</LinkedText> {">"} {data.className} 
             </h2>
 
             {typeof data.instructor !== "undefined" && 
