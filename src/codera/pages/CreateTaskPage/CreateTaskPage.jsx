@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useContext, useEffect } from "react";
-import { AiFillQuestionCircle } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useFetch, useForm, useModal } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
-import { Button, DefaultSelector, FilteredSelector, TextInput } from "../../../ui/components";
+import { Button, DefaultSelector, InfoMessage, TextInput } from "../../../ui/components";
 import { CodeEditorModal, LanguageLabel, LinkedText } from "../../components";
 import { post } from "../../helpers/post";
 import "./CreateTaskPage.css";
@@ -12,6 +12,8 @@ import "./CreateTaskPage.css";
 
 export const CreateTaskPage = () => {
     const { classId } = useParams();
+
+    const navigate =useNavigate();
 
     const { open: isOpenEditorModal, 
             onOpenModal: openEditorModal, 
@@ -44,6 +46,9 @@ export const CreateTaskPage = () => {
             onFormChange, 
             changeValue } = useForm(initialForm);
 
+    const [ clickedLanguage, setClickedLanguage ]= useState({});
+
+
     useEffect(()=>{
       fetchLanguages();
     },[])
@@ -54,37 +59,96 @@ export const CreateTaskPage = () => {
   }
 
   const uploadTask= async()=>{
-    const body={
-      classId,
-      taskTitle,
-      taskDescription,
-      maxScore : maxScore.id ,
-      templateCode,
-      limitDate: new Date(limitDate)
+    if(selectedLanguages.length===0){
+      toast.error('select one language at least', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      return;
     }
+
+      const body={
+        classId,
+        taskTitle,
+        taskDescription,
+        maxScore : maxScore.id ,
+        templateCode,
+        limitDate: new Date(limitDate)
+      }
 
     try {
         const response= await post("tasks",body);
         registerLanguages(response.data.id)
+
+        toast.success('task created succesfully!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+
+          setTimeout( ()=> {navigate(-1)}, 1000);
         
     } catch (error) {
-
+      toast.error('please, fill all the required fields', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   }
-
 
   const removeSelectedLanguage=(id)=>{
     const newList=selectedLanguages.filter((language)=>(language.id!=id))
     onFormChange( { target: { name: "selectedLanguages", value: newList } });
   }
 
-
   const registerLanguages = async(taskId) => {
     selectedLanguages.forEach( async ({id:languageId}) => {
       const body={ taskId, languageId };
-      const response = await post("/language-asignation", body);
-      console.log(response)
+      await post("/language-asignation", body);
     });
+  }
+
+  const onClickLanguage= ({ target })=> {
+    const { value: language }= target;
+    setClickedLanguage( language );
+  }
+
+  const onAddLanguage= ()=> {
+    const repeatLanguage= selectedLanguages.find(({ id })=> (id===clickedLanguage.id))
+    
+    if(!repeatLanguage){
+      const newSelectedLanguages= [ ...selectedLanguages, clickedLanguage ];
+      changeValue( "selectedLanguages", newSelectedLanguages );
+      return;
+    }
+
+    toast.error('you can not repeat the same programming language', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   }
 
   return (
@@ -108,48 +172,87 @@ export const CreateTaskPage = () => {
 
                 new task
             </h2> 
-        
-
+      
             <h2 className="header6 section-title">New task</h2>
             <form >
-                <label>Task title*</label>
-                <TextInput type="text" placeholder="Task title" name="taskTitle" width="100%" value={taskTitle} onChange={onFormChange}/>
+                <label> <b>Task title*:</b>  </label>
+                <TextInput 
+                  type="text" 
+                  placeholder="Task title" 
+                  name="taskTitle"
+                  width="100%" 
+                  value={taskTitle} 
+                  onChange={onFormChange}
+                />
                 
-                <label>Task description*</label> 
-                <TextInput placeholder="Task title" name="taskDescription" width="100%" height="10vh" variation="text-area" value={taskDescription} onChange={onFormChange}/>
-
+                <label><b>Task description*:</b></label> 
+                <TextInput 
+                  placeholder="Task title" 
+                  name="taskDescription" 
+                  width="100%" 
+                  height="10vh" 
+                  variation="text-area" 
+                  value={taskDescription} 
+                  onChange={onFormChange}
+                />
 
                 <div className="line">
-                    <label >Max score* </label> 
-                    <DefaultSelector objectList={scoreList} name="maxScore" defaultValue={maxScore} onChange={onFormChange} />
-                   
+                    <label > <b>Max score*:</b> </label> 
+                    <DefaultSelector 
+                      objectList={scoreList} 
+                      name="maxScore" 
+                      defaultValue={maxScore} 
+                      onChange={onFormChange} 
+                    />
                 </div>
 
                 <div className="line">
-                  <label >Deadline* </label> 
-                  <input className="date-time-input" type="datetime-local" name="limitDate" value={limitDate} onChange={onFormChange} />
+                  <label > <b>Deadline*:</b> </label> 
+                  <input 
+                    className="date-time-input" 
+                    type="datetime-local" 
+                    name="limitDate" 
+                    value={limitDate} 
+                    onChange={onFormChange} 
+                  />
                 </div>
 
                 <div className="line">
-                    <label>Language* </label>
-                    <FilteredSelector name="selectedLanguages" totalItemsList={languageList} selectedItemsList={selectedLanguages} isLoading={languagesLoading} onChange={onFormChange}  />
+                    <label><b>Language*:</b></label>
+                    <DefaultSelector 
+                      objectList={languageList} 
+                      name="selectedLanguages" 
+                      defaultValue={maxScore} 
+                      isLoading={languagesLoading} 
+                      onChange={onClickLanguage}
+                    />
+
+                  <Button 
+                    text="Add language" 
+                    height="35px" 
+                    width="130px" 
+                    borderRadius="10px" 
+                    onClickFunction={onAddLanguage} 
+                  />
+
                 </div>
+
                 <div>
                 { selectedLanguages.map(({id, name})=>(
                     <LanguageLabel key={id} name={name} onClose={()=>{removeSelectedLanguage(id)}}/>
+                    )
                   )
-                )
                 }
                 </div>
 
                 <div className="line">
-                    <p>Template code: </p>
-                    <Button text="edit" type="blue" height="5vh" width="9vh" onClickFunction={openEditorModal} />
+                    <label><b>Template code:</b></label>
+                    <Button text="edit" type="blue" height="35px" width="45px" borderRadius="10px" onClickFunction={openEditorModal} />
                     
                 </div>
-                <p className="help-message"> <AiFillQuestionCircle/> You can write a part of code</p>
-
-                <Button text="Create task" type="blue" width="20vh" height="5vh" onClickFunction={uploadTask} />
+                  <InfoMessage text="You can write a part of code to help your students."/>
+                  <hr />
+                <Button text="Create task" type="blue" height="35px" width="100px" borderRadius="10px" onClickFunction={uploadTask} />
             </form>
 
             <CodeEditorModal openState={isOpenEditorModal} onCloseModal={closeEditorModal} onUpdateCode={updateTemplateCode}/>

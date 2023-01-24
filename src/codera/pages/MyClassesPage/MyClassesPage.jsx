@@ -5,8 +5,14 @@ import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
   const { data, isLoading,fetchData} = useFetch("classes");
-  const { open:isJoinModalOpen, onOpenModal:openJoinModal, onCloseModal:closeJoinModal } = useModal();
-  const { open:isCreateModalOpen, onOpenModal:openCreateModal, onCloseModal:closeCreateModal } = useModal();
+
+  const { open:isJoinModalOpen, 
+          onOpenModal:openJoinModal, 
+          onCloseModal:closeJoinModal } = useModal();
+
+  const { open:isCreateModalOpen,
+          onOpenModal:openCreateModal, 
+          onCloseModal:closeCreateModal } = useModal();
 
   return (
     <div className="main-content">
@@ -50,8 +56,17 @@ export const MyClassesPage = () => {
             onClickFunction={openCreateModal}
           />
 
-        <JoinClassModal openState={isJoinModalOpen} onCloseModal={closeJoinModal} onReload={fetchData}/>
-        <CreateClassModal openState={isCreateModalOpen} onCloseModal={closeCreateModal} onReload={fetchData} />
+        <JoinClassModal 
+          openState={isJoinModalOpen} 
+          onCloseModal={closeJoinModal} 
+          onReload={fetchData}
+        />
+
+        <CreateClassModal 
+          openState={isCreateModalOpen} 
+          onCloseModal={closeCreateModal}
+          onReload={fetchData} 
+        />
 
         </div>
       </section>

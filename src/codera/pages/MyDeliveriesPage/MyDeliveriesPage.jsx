@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../../hooks";
-import { DeliveredTaskCard, LinkedText } from "../../components";
+import { DeliveredTaskCard, LinkedText, Loading } from "../../components";
 import "./MyDeliveriesPage.css"
 
 export const MyDeliveriesPage = () => {
@@ -32,7 +32,7 @@ export const MyDeliveriesPage = () => {
                 }
  
                 {   
-                    loadingDeliveries ? (<> Loading ...</>) 
+                    loadingDeliveries ? (<Loading/>) 
                     : <ul className="my-deliveries-list">
                     {
                         deliveries.map(

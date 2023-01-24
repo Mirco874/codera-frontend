@@ -13,6 +13,10 @@ label{
     margin-right: 10px;
 }
 
+.line .button {
+    margin-inline: 10px;
+}
+
 .help-message{
     margin-top: 0;
     margin-inline: 10px;

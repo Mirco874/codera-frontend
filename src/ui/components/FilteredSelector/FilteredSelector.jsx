@@ -5,7 +5,6 @@ export const FilteredSelector = ({ totalItemsList, selectedItemsList, name, isLo
   const [availableItems, setAvailableItems] = useState([]);
 
   const getIdFromObjectList=(items)=>{
-    console.log(items.map(({id})=>id))
     return items.map(({id})=>id);
   }
 

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { useFetch, useForm } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
 import { Button, DefaultSelector, InfoMessage } from "../../../ui/components";
@@ -19,14 +20,37 @@ export const ReviewDeliveryPage = () => {
     if(score.id<=delivery.task.maxScore){
 
       const body={
-        score: score.id};
+        score: score.id
+      };
 
-      const response =await updateFromAPI(`task-deliveries/${delivery.id}/update-score`, body);
+      await updateFromAPI(`task-deliveries/${delivery.id}/update-score`, body);
 
-      reloadData();
-
+      toast.success('Task graded successfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        reloadData();
     }
-    console.log("el puntaje debe ser menor o igual al máximo");
+
+  else{
+    toast.error('The score must be less than or equal to the maximum', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
+  }
+
   }
 
   return (
@@ -82,7 +106,19 @@ export const ReviewDeliveryPage = () => {
                 </>
             }
         </div>
-
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
+        <ToastContainer />
       </section>
     </div>
   )

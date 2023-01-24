@@ -1,39 +1,35 @@
-import Modal from "react-responsive-modal";
+import PureModal from 'react-pure-modal';
 import PropTypes from "prop-types";
 import { Button } from "../../../ui/components";
 import { CodeEditor } from "../";
-import "react-responsive-modal/styles.css";
+import 'react-pure-modal/dist/react-pure-modal.min.css';
 import "./CodeEditorModal.css";
 
 export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode }) => {
 
   return (
-    <Modal open={openState} onClose={onCloseModal}>
-      
-      <h2 className="sub-title2">Template</h2>
 
-      <CodeEditor onInputChange={onUpdateCode}/>
-
-      <div className="buttons">
-        <Button
-          text="Save"
-          height="25px"
-          width="80px"
-          borderRadius="15px" 
+    <PureModal
+      header="Template"
+      isOpen={openState}
+      closeButton="X"
+      onClose={onCloseModal}
+      width="80%"
+    > 
+      <CodeEditor 
+        onInputChange={onUpdateCode} 
+        height="280px"
         />
+
         <Button
-          text="Cancel"
+          text="Close"
           height="25px"
           width="80px"
-          type="red"
+          type="blue"
           borderRadius="15px"
-         onClickFunction={onCloseModal}
+        onClickFunction={onCloseModal}
         />
-      </div>
-
-      
-
-    </Modal>
+    </PureModal>
   )
 }
 

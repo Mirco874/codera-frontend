@@ -17,3 +17,4 @@ export * from "./DeliveryDetail/DeliveryDetail";
 export * from "./StudentDeliveryCard/StudentDeliveryCard";
 export * from "./Commentary/Commentary";
 export * from "./LinkedText/LinkedText";
+export * from "./Loading/Loading";
