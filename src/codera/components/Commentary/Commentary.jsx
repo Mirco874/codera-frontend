@@ -12,7 +12,7 @@ export const Commentary = ( { commentary } ) => {
 
         <div className="data">
             <div className="header">
-                <p><b>{user.fullName}</b></p>
+                <p className="comentary-user-name"><b>{user.fullName}</b></p>
                 <p> { getDate(commentDate) } { getTime(commentDate) }  </p>    
             </div>    
 

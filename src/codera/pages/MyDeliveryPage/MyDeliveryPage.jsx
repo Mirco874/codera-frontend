@@ -21,7 +21,7 @@ export const MyDeliveryPage = () => {
                                     deliveryDate={delivery.deliveryDate} 
                                     score={delivery.score}
                                 /> 
-                           
+                            <CommentarySection deliveryId={delivery.id} />
                         </div>
                         
                         <div className="right-section">
