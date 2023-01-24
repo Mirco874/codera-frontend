@@ -309,7 +309,7 @@ CodeEditor.defaultProps={
   readOnly: false,
   defaultCode: "",
   defaultLanguage:{id:"", name:""},
-  defaultLanguageList: []
+  defaultLanguageList: [ ]
 }
 
 CodeEditor.propTypes={
