@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../../hooks";
-import { OptionButton } from "../../components";
+import { LinkedText, OptionButton } from "../../components";
 import { BsFillFileEarmarkCodeFill } from "react-icons/bs";
 import { GoChecklist } from "react-icons/go";
 import {AiFillEye} from "react-icons/ai"
@@ -23,7 +23,10 @@ export const ClassPage = () => {
       <section className="main-layout">
         {isLoading ? ( <>Loading</>  ) : 
         ( <>
-            <h2 className="h6 section-title"> My classes {">"} {data.className} </h2>
+            <h2 className="header6 section-title"> 
+                <LinkedText className="header6" path="/clases" >My classes</LinkedText> {">"} {data.className} 
+            </h2>
+
             {typeof data.instructor !== "undefined" && 
               ( <p className="body2"> <b>Instructor: </b> {data.instructor.fullName} </p> )
             }
