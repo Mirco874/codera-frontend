@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
-import Modal from "react-responsive-modal";
+import PureModal from 'react-pure-modal';
 import { useForm } from "../../../hooks";
 import { Button } from "../../../ui/components";
 import { getUserInformation } from "../../helpers/userData";
 import { post } from "../../helpers/post";
 import { useState } from "react";
-import "react-responsive-modal/styles.css";
+import 'react-pure-modal/dist/react-pure-modal.min.css';
 import "./JoinClassModal.css";
+
 
 const initialForm = { code: "" };
 
@@ -16,12 +17,12 @@ export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
 
   const enroll = async () => {
     const { id } = getUserInformation();
-
+   
     const body = { userId: id, classId: code};
-
+ 
     try {
       await post("inscriptions", body);
-      onReload();
+      setTimeout( ()=> {onReload();}, 1000);
       closeModal();
     } 
     catch (error) {
@@ -45,22 +46,28 @@ export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
     removeErrorMessage();
   }
 
-  return (
-    <Modal open={openState} onClose={onCloseModal}>
-      
-      <h2 className="sub-title2">Insert the course code: </h2>
 
+  return (
+    <PureModal
+      header="Insert the course code:"
+      isOpen={openState}
+      closeButton="X"
+      onClose={onCloseModal}
+      width="26%"
+    >
       <p className="error-message body2"> {errorMessage} </p>
 
       <input
-        className="input-field"
+        className="input-field code-input"
         type="text"
         placeholder="Code"
         name="code"
         value={code}
         onChange={onCodeTextChange}
       />
+
       <div className="buttons">
+
         <Button
           text="Enroll"
           height="25px"
@@ -68,6 +75,7 @@ export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
           borderRadius="15px"
           onClickFunction={enroll}
         />
+
         <Button
           text="Cancel"
           height="25px"
@@ -77,7 +85,8 @@ export const JoinClassModal = ({ openState, onCloseModal, onReload }) => {
           onClickFunction={closeModal}
         />
       </div>
-    </Modal>
+
+    </PureModal>
   );
 };
 

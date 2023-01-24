@@ -1,6 +1,12 @@
 .buttons {
   margin-top: 5%;
+  margin-inline: auto;
 }
+
+.code-input{
+  width: 100%;
+}
+
 .error-message{
   color: red;
 }

@@ -1,11 +1,12 @@
 import {useState} from "react";
 import { useForm } from "../../../hooks";
 import PropTypes from "prop-types";
-import Modal from "react-responsive-modal";
 import { Button } from "../../../ui/components";
 import { getUserInformation } from "../../helpers/userData";
 import { post } from "../../helpers/post";
-import "react-responsive-modal/styles.css";
+import PureModal from 'react-pure-modal';
+import 'react-pure-modal/dist/react-pure-modal.min.css';
+import "./CreateClassModal.css"
 
 const initialForm = { className: "", classDescription: "" };
 
@@ -16,18 +17,23 @@ export const CreateClassModal = ({ openState, onCloseModal, onReload }) => {
 
   const createClass=async ()=>{
 
-    const { id } = getUserInformation();
+    if(className===""){
+      setErrorMessage("Insert the name of class")
+      return;
+    }
 
+    const { id } = getUserInformation();
     const body = { teacherId:id, className, classDescription };
 
     try {
       await post("classes", body);
-      onReload();
+      setTimeout( ()=> {onReload();}, 1000);
       closeModal();
-
+        
     } catch (error) {
         setErrorMessage(error.response.data.message)
     }
+
   }
 
   const removeErrorMessage=()=>{
@@ -40,23 +46,35 @@ export const CreateClassModal = ({ openState, onCloseModal, onReload }) => {
     onCloseModal();
   };
 
+  const onClassNameChange=(e)=>{
+    onFormChange(e);
+    removeErrorMessage();
+  }
+
+
   return (
-    <Modal open={openState} onClose={onCloseModal}>
-      <h2 className="sub-title2">Complete the next information: </h2>
-      {errorMessage}
-      <p>Class Name :* </p>
+    <PureModal
+    header="Complete the next information:"
+    isOpen={openState}
+    closeButton="X"
+    onClose={onCloseModal}
+    width="40%"
+  >
+    <p className="error-message body2"> {errorMessage} </p>
+      <label> <p><b>Class Name*: </b></p></label>
+
       <input
-        className="input-field"
+        className="input-field input"
         type="text"
         placeholder="Class Name"
         name="className"
         value={className}
-        onChange={onFormChange}
+        onChange={onClassNameChange}
       />
 
-      <p>Description: </p>
+      <label> <p><b>Description: </b></p></label>
       <textarea
-        className="input-field modal-description"
+        className="input-field modal-description input"
         type="text"
         placeholder="Description"
         name="classDescription"
@@ -81,7 +99,10 @@ export const CreateClassModal = ({ openState, onCloseModal, onReload }) => {
           onClickFunction={closeModal}
         />
       </div>
-    </Modal>
+
+  </PureModal>
+
+
   );
 };
 

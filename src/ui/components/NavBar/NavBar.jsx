@@ -35,7 +35,7 @@ export const NavBar = () => {
           src="../assets/images/codera_logo_small.png"
           alt="codera logo"
         />
-        <p className="logo-title h5">Codera</p>
+        <p className="logo-title header5">Codera</p>
       </div>
       {activeSession ? (
         <Link className="button-text navbar-button" to="/" onClick={logout}> Logout </Link>

@@ -31,16 +31,13 @@ export const SideBar = () => {
           text="Class"
           path="/classes"
         />
+        
         <NavigationButton
           icon={<BsCodeSlash />}
           text="Practice"
           path="/practice"
         />
-        <NavigationButton
-          icon={<FiSettings />}
-          text="Settings"
-          path="/settings"
-        />
+
         <NavigationButton
           icon={<BsFillFilePersonFill />}
           text="Profile"

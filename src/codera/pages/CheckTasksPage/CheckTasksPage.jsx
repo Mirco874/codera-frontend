@@ -3,11 +3,10 @@ import PureModal from 'react-pure-modal';
 import { TaskCard } from "../../components";
 import {useFetch, useModal} from "../../../hooks";
 import { Button } from "../../../ui/components";
-import 'react-pure-modal/dist/react-pure-modal.min.css';
-import "./CheckTasksPage.css";
 import { removeFromAPI } from "../../helpers/removeFromAPI";
 import { useState } from "react";
-
+import 'react-pure-modal/dist/react-pure-modal.min.css';
+import "./CheckTasksPage.css";
 
 export const CheckTasksPage = () => {
     const { classId}=useParams();
