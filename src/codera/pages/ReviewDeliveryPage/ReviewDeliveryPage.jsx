@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch, useForm } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
-import { Button, DefaultSelector } from "../../../ui/components";
+import { Button, DefaultSelector, InfoMessage } from "../../../ui/components";
 import { CodeEditor, CommentarySection, DeliveryDetail, TaskDetail } from "../../components";
 import { post } from "../../helpers/post";
 import { updateFromAPI } from "../../helpers/updateFromAPI";
@@ -14,8 +14,6 @@ export const ReviewDeliveryPage = () => {
   const { data:delivery , isLoading: loadingDelivery, fetchData: reloadData } = useFetch(`task-deliveries/${deliveryId}`);
   const { scoreList } = useContext(ApplicationContext);
   const { score, onFormChange } =useForm({ score: null });
-
-  console.log(delivery);
 
   const uploadDeliveryCalification= async () =>{
     if(score.id<=delivery.task.maxScore){
@@ -53,9 +51,7 @@ export const ReviewDeliveryPage = () => {
                           score={delivery.score}
                         />
                         
-                        <p>
-                            you can set the note or update the note 
-                        </p>
+                        <InfoMessage text="you can set the note or update the note" />
                         
                         <div className="calification-section">
                           <DefaultSelector objectList={scoreList} name="score"  defaultValue={score} onChange={onFormChange} />
@@ -83,7 +79,6 @@ export const ReviewDeliveryPage = () => {
                             height="45vh"
                             />
                         </div>
-
                 </>
             }
         </div>

@@ -6,7 +6,7 @@ import "./MyDeliveryPage.css";
 export const MyDeliveryPage = () => {
     const {deliveryId}= useParams();
     const { data:delivery , isLoading: loadingDelivery} = useFetch(`task-deliveries/${deliveryId}`);
-
+ 
     return (
         <div className="main-content">
             <section className="main-layout">
@@ -17,8 +17,11 @@ export const MyDeliveryPage = () => {
                     <>
                         <div className="left-section">
                             <TaskDetail  task={delivery.task}/>
-                            <DeliveryDetail deliveryDate={delivery.deliveryDate} score={delivery.score}/>
-                            <CommentarySection />
+                            <DeliveryDetail 
+                                    deliveryDate={delivery.deliveryDate} 
+                                    score={delivery.score}
+                                /> 
+                           
                         </div>
                         
                         <div className="right-section">

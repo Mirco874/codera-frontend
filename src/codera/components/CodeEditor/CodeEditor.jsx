@@ -30,8 +30,6 @@ export const CodeEditor = ( {
   } ) => 
   {
    
-
-
   const { languageList, languagesLoading, fetchLanguages, themeList}=useContext(ApplicationContext);
     const [code, setCode] = useState("");    
     const [outputConsole, setOutpuConsole] = useState("");
@@ -54,23 +52,24 @@ export const CodeEditor = ( {
       setCode(value); 
       onInputChange(value);
     };
-
+ 
     const sendCode = async (e) => {
         e.preventDefault();
+        const programmingLanguage = defaultLanguage==="" ?  language.name : defaultLanguage.name
+        const codeToExcecute = defaultCode ==="" ? code : defaultCode ;  
 
-        const name= defaultLanguage!=="" ?  language.name :defaultLanguage.name
-        alert(name)
-        switch (name) {
+        alert(`selected language: ${ programmingLanguage}`)
+        switch (programmingLanguage) {
             case "java":
-            runJavaCode(code);
+            runJavaCode(codeToExcecute);
             break;
 
             case "javascript":
-            runInterpretedCode(code, "javascript");
+            runInterpretedCode(codeToExcecute, "javascript");
             break;
 
             case "python":
-            runInterpretedCode(code, "python");
+            runInterpretedCode(codeToExcecute, "python");
             break;
 
             default:
@@ -78,8 +77,6 @@ export const CodeEditor = ( {
             break;
         }
     };
-    
-
     
     const runJavaCode = async (code) => {
         const className = findClassName(code);

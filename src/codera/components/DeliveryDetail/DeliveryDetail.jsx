@@ -6,7 +6,7 @@ import "./DeliveryDetail.css"
 import { LanguageLabel } from "../LanguageLabel/LanguageLabel";
 
 export const DeliveryDetail = ({ student, selectedLanguage,  deliveryDate, score }) => {
-  const { email, fullName } =student;
+
   
   return (
     <div className="">
@@ -14,27 +14,26 @@ export const DeliveryDetail = ({ student, selectedLanguage,  deliveryDate, score
         student !==null && (
           <>
             <h4>Student: </h4>
-            <p> <b>Name: </b>{fullName} </p>
-            <p> <b>Email: </b>{email} </p>
+            <p> <b>Name: </b>{ student.fullName } </p>
+            <p> <b>Email: </b>{ student.email } </p>
           </>
           )
       }
       {
       selectedLanguage !== null && (
         <div className="selected-languages">
-        <p><b>Selected Language: </b>{selectedLanguage.name} </p>
-
+          <p><b>Selected Language: </b>{selectedLanguage.name} </p>
         </div>
         )
       }
+    <p> <b>Delivered:</b> { `${getDate(deliveryDate)} ${getTime(deliveryDate)}` }</p>
 
-        <p> <b>Delivered:</b> { `${getDate(deliveryDate)} ${getTime(deliveryDate)}` }</p>
-        <p> <b>Score:</b> {
-            score===null ? <>Pending.</>
-            :<> 
-            {score}
-            </>
-        }</p>
+    <p> <b>Score:</b> {
+    score===null ? <>Pending.</>
+    : <> {score}</>
+}
+</p>
+
     </div>
   )
 }
@@ -52,3 +51,6 @@ DeliveryDetail.propTypes={
   deliveryDate: PropTypes.string, 
   score: PropTypes.string
 }
+
+
+

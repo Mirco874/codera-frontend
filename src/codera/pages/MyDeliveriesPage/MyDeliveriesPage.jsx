@@ -30,7 +30,7 @@ export const MyDeliveriesPage = () => {
                             current deliveries
                     </h2>    
                 }
-
+ 
                 {   
                     loadingDeliveries ? (<> Loading ...</>) 
                     : <ul className="my-deliveries-list">
