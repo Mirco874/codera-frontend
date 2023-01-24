@@ -55,10 +55,11 @@ export const CodeEditor = ( {
  
     const sendCode = async (e) => {
         e.preventDefault();
-        const programmingLanguage = defaultLanguage==="" ?  language.name : defaultLanguage.name
+        
+        const programmingLanguage = defaultLanguage==="" ?  language.name : defaultLanguage.name;
+
         const codeToExcecute = defaultCode ==="" ? code : defaultCode ;  
 
-        alert(`selected language: ${ programmingLanguage}`)
         switch (programmingLanguage) {
             case "java":
             runJavaCode(codeToExcecute);
