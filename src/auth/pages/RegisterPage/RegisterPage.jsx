@@ -15,8 +15,13 @@ const registerForm = {
 };
 
 export const RegisterPage = () => {
-  const { fullName, email, password, repeatPassword, formData, onFormChange } =
-    useForm(registerForm);
+  const { fullName,
+          email, 
+          password, 
+          repeatPassword, 
+          formData, 
+          onFormChange } = useForm(registerForm);
+
   const navigate = useNavigate();
 
   const register = async () => {
@@ -55,7 +60,7 @@ export const RegisterPage = () => {
       setTimeout(function() {navigate("/auth/login");}, 1000);
       
     } catch (error) {
-      toast.error("internal server error", {
+      toast.error(error.response.data.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

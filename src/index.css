@@ -6,7 +6,6 @@ body {
 }
 
 input::placeholder  {
-  padding-left: 5px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -24,7 +23,7 @@ textarea::placeholder {
 }
 
 .form-content{
-  margin-top: 10vh;
+  margin-top: 5vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -57,7 +56,6 @@ textarea::placeholder {
   margin: 0;
 }
 
-
 .center-form {
   display: block;
   align-items: center;
@@ -70,13 +68,21 @@ textarea::placeholder {
   border: 2px solid black;
   height: 38px;
   width: 292px;
+  box-sizing: border-box;
+  padding-inline: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0.0025em;
 }
+
 
 .section-title{
   margin-bottom: 0;
 }
 
-.h1 {
+.header1 {
   font-style: normal;
   font-weight: 300;
   font-size: 57.33px;
@@ -84,7 +90,7 @@ textarea::placeholder {
   letter-spacing: -0.015em;
 }
 
-.h2 {
+.header2 {
   font-style: normal;
   font-weight: 300;
   font-size: 47.78px;
@@ -92,14 +98,14 @@ textarea::placeholder {
   letter-spacing: -0.005em;
 }
 
-.h3 {
+.header3 {
   font-style: normal;
   font-weight: 400;
   font-size: 39.81px;
   line-height: 130%;
 }
 
-.h4 {
+.header4 {
   font-style: normal;
   font-weight: 400;
   font-size: 33.18px;
@@ -107,7 +113,7 @@ textarea::placeholder {
   letter-spacing: 0.005em;
 }
 
-.h5 {
+.header5 {
   font-style: normal;
   font-weight: 400;
   stroke: 400;
@@ -115,7 +121,7 @@ textarea::placeholder {
   line-height: 130%;
 }
 
-.h6 {
+.header6 {
   font-style: normal;
   font-weight: 500;
   font-size: 23.04px;
@@ -123,7 +129,7 @@ textarea::placeholder {
   letter-spacing: 0.0015em;
 }
 
-.sub-title1 {
+.subtitle1 {
   font-style: normal;
   font-weight: 400;
   font-size: 19.2px;
@@ -131,7 +137,7 @@ textarea::placeholder {
   letter-spacing: 0.0015em;
 }
 
-.sub-title2 {
+.subtitle2 {
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

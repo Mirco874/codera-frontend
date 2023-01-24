@@ -6,3 +6,7 @@
 .login-form input{
     margin-block: 1vh;
 }
+
+.login-form label {
+    margin-bottom: 0;
+}
