@@ -12,7 +12,7 @@ export const RemainingDaysLabel = ({ limitDate }) => {
     const getRemainingDays=()=>{
         const currentDate= new Date().getTime();  
         const deadline= new Date(limitDate).getTime();
-        const difference=(deadline-currentDate)/(1000*60*60*24) ;
+        const difference=(deadline-currentDate)/(1000*60*60*24)+1 ;
         setRemainingDays(~~difference);
     }
 

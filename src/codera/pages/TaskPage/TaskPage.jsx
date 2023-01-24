@@ -14,8 +14,6 @@ export const TaskPage = () => {
 
   const { code, languageId, changeValue }= useForm( initialForm );
 
-
-
   const onUpdateLanguageId=(e)=>{
     const { value } =e.target;
     changeValue( "languageId", value.id  )
@@ -28,9 +26,7 @@ export const TaskPage = () => {
   const sendTaskDelivery= async() =>{
     const body={ taskId:+taskId, languageId, code }; 
     const response= await post("task-deliveries", body );
-    console.log(response)
   }
-
 
     return (
     <div className="main-content">
@@ -42,7 +38,7 @@ export const TaskPage = () => {
             <>
                 <div className="left-section">
                     <TaskDetail  task={task}/>
-                    <CommentarySection />
+                    
                 </div>
                  
                 <div className="right-section">

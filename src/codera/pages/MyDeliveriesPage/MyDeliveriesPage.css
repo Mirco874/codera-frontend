@@ -1,0 +1,12 @@
+.my-deliveries-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.my-deliveries-list li {
+  list-style-type: none;
+}

@@ -1,5 +1,6 @@
 .code-editor {
   width: 100%;
+  margin-bottom: 5vh;
 }
 
 .editor-options {
@@ -26,6 +27,7 @@
   align-items: center;
   height: 25px;
   max-height: 25px;
+  cursor: pointer;
 }
 
 .editor-option p {
