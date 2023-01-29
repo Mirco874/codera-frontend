@@ -1,17 +1,16 @@
 import PropTypes from "prop-types";
 import "./Selector.css";
 
-export const Selector = ({ name, objectList , indexDefaultValue,  onChange, isLoading }) => {
+export const Selector = ({ name, objectList , defaultValue,  onChange, isLoading }) => {
 
-  const existObject= objectList? objectList[indexDefaultValue] : null;
-  const defaultValue=existObject ? existObject.id : name ;
- 
+  const initialValue= defaultValue ? defaultValue.name : name ;
+
   const onSelectorChange=(event)=>{
     onChange( event, name );
   }
 
   return (
-    <select className="body2 selector" name={name} onChange={onSelectorChange} defaultValue={defaultValue} >
+    <select className="body2 selector" name={name} onChange={onSelectorChange} defaultValue={initialValue} >
       
         <option className="body2" disabled  >
           {name}
@@ -19,7 +18,12 @@ export const Selector = ({ name, objectList , indexDefaultValue,  onChange, isLo
 
       {(!isLoading) &&
         objectList.map(({ id, name }) => (
-          <option key={name} className="body2" value={ JSON.stringify({id, name}) }>
+          <option 
+            key={name} 
+            className="body2" 
+            value={ JSON.stringify({ id, name }) } 
+            selected={ name === initialValue }
+            >
             {name}
           </option>
         ))}
@@ -32,7 +36,7 @@ export const Selector = ({ name, objectList , indexDefaultValue,  onChange, isLo
 Selector.propTypes={
   name:PropTypes.string,
   objectList:PropTypes.array, 
-  indexDefaultValue:PropTypes.number,
+  defaultValue:PropTypes.object,
   onChange:PropTypes.func,
   isLoading:PropTypes.bool
 }
@@ -41,7 +45,7 @@ Selector.propTypes={
 Selector.defaultProps={
   name:"selector",
   objectList:[{ id: 0, name:"selector"}], 
-  indexDefaultValue:-1,
+  defaultValue:null,
   onChange: ()=>{console.log("onchange selector")} ,
   isLoading:false
 }
