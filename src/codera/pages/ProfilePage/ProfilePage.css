@@ -1,0 +1,26 @@
+.my-profile{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding-inline: 20px;
+    margin-top: 16px;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.profile-form{
+    margin: auto;
+}
+
+.profile-form .button {
+    margin-left: 0;
+    margin-top: 16px;
+}
+.my-profile-photo {
+    height: 160px;
+    width: 160px;
+    border-radius: 90px;
+    display: block;
+    margin: auto;
+}
