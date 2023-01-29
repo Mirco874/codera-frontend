@@ -14,14 +14,14 @@ export const TaskDetail = ({ task, showLanguages, showValuePoints }) => {
         taskTitle} =task
 
   return (
-    <div>
-        <h2>{taskTitle}</h2>
-        <p>{taskDescription}</p>
+    <div className="task-detail">
+        <h2 className="header6"><b>{taskTitle} </b></h2>
+        <p className="body2">{taskDescription}</p>
         {
           showValuePoints &&  <p> <b>Value: </b>{maxScore} points.</p>
         }
        
-        <p> <b>Until:</b> {`${getDate(limitDate)} ${getTime(limitDate)}`} </p>
+        <p className="body2"> <b>Until:</b> {`${getDate(limitDate)} ${getTime(limitDate)}`} </p>
         {
           showLanguages && <AllowedLanguages languagesList={allowedLanguages}/>
         }
