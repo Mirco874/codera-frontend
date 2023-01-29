@@ -1,9 +1,13 @@
 .selected-languages{
     display: inline-flex;
     align-items: center;
-    margin-block: 0;
+    margin: 0;
 }
 
 .left-section .button{
     margin: 0;
+}
+.delivery-detail-section{
+    margin: 0;
+    padding: 0;
 }

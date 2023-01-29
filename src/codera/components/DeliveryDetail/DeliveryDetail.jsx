@@ -1,29 +1,24 @@
-import { LanguageIcon } from "../../../ui/components";
-import { getDate, getTime } from "../../helpers/date"
 import PropTypes from "prop-types";
-
-import "./DeliveryDetail.css"
-import { LanguageLabel } from "../LanguageLabel/LanguageLabel";
+import { getDate, getTime } from "../../helpers/date";
+import "./DeliveryDetail.css";
 
 export const DeliveryDetail = ({ student, selectedLanguage,  deliveryDate, score }) => {
 
   
   return (
-    <div className="">
+    <div className="delivery-detail-section">
       {
         student !==null && (
           <>
-            <h4>Student: </h4>
-            <p> <b>Name: </b>{ student.fullName } </p>
-            <p> <b>Email: </b>{ student.email } </p>
+            <h4 className="subtitle2"> <b>Student:</b>  </h4>
+            <p className="body2"> <b>Name: </b>{ student.fullName } </p>
+            <p className="body2"> <b>Email: </b>{ student.email } </p>
           </>
           )
       }
       {
       selectedLanguage !== null && (
-        <div className="selected-languages">
           <p><b>Selected Language: </b>{selectedLanguage.name} </p>
-        </div>
         )
       }
     <p> <b>Delivered:</b> { `${getDate(deliveryDate)} ${getTime(deliveryDate)}` }</p>
