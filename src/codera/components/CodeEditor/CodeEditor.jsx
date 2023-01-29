@@ -40,7 +40,7 @@ export const CodeEditor = ( {
             themeList} =dataContext;
 
 
-    const [code, setCode] = useState("");    
+    const [code, setCode] = useState(defaultCode);    
     const [outputConsole, setOutpuConsole] = useState("");
 
     const editorForm = {
@@ -58,7 +58,8 @@ export const CodeEditor = ( {
 
 
     const onCodeChange = (value) => {
-      setCode(value); 
+      setCode(value);
+
       onInputChange(value);
     };
  
@@ -67,7 +68,7 @@ export const CodeEditor = ( {
         
         const programmingLanguage = defaultLanguage.name==="" ?  language.name : defaultLanguage.name;
 
-        const codeToExcecute = defaultCode ==="" ? code : defaultCode ;  
+        const codeToExcecute = code;
 
         switch (programmingLanguage) {
             case "java":
@@ -187,7 +188,6 @@ export const CodeEditor = ( {
                 <DefaultSelector
                   objectList={themeList}
                   name="theme"
-                  indexDefaultValue={0}
                   onChange={onSelectorUpdate}
                 />
               </li>
