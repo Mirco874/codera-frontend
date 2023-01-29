@@ -178,3 +178,16 @@ textarea::placeholder {
   letter-spacing: 0.0125em;
   text-transform: capitalize;
 }
+
+.scroll{
+  overflow: scroll;
+  background-color: white;
+}
+
+.task-information-scroll{
+  height: 53vh;
+
+}
+.commentary-scroll{
+  height: 35vh;
+}
