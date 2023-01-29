@@ -1,6 +1,7 @@
 import { Selector } from "../";
 
-export const DefaultSelector = ({ name, objectList , indexDefaultValue,  onChange, isLoading }) => {
+export const DefaultSelector = ({ name, objectList , defaultValue,  onChange, isLoading }) => {
+
 
     const onSelectorChange=( event , atributeName )=>{
         const { value: optionSelected } = event.target;
@@ -12,7 +13,7 @@ export const DefaultSelector = ({ name, objectList , indexDefaultValue,  onChang
     <Selector 
         name={name} 
         objectList={objectList} 
-        indexDefaultValue={indexDefaultValue} 
+        defaultValue={defaultValue}
         isLoading={isLoading} 
         onChange={onSelectorChange}    
     />
