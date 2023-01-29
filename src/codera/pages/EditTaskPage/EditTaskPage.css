@@ -1,0 +1,29 @@
+label{
+    display: block;
+    margin-block: 10px;
+    margin-right: 16px;
+}
+
+.line{
+    display: flex; 
+    align-items: center;
+}
+
+.line p {
+    margin-right: 10px;
+}
+
+.line .button {
+    margin-inline: 10px;
+}
+
+.help-message{
+    margin-top: 0;
+    margin-inline: 10px;
+}
+
+.help-message svg{
+    height: 20px;
+    width: 20px;
+}
+
