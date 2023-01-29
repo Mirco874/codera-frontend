@@ -9,27 +9,38 @@ export const NavBar = () => {
   const [activeSession, SetActiveSession] = useState(false);
   const navigate=useNavigate();
 
-  useEffect(() => {
-    const isLogged=existUserLogged()
-    SetActiveSession(isLogged);
-  }, [localStorage.getItem("token")]);
+  const getActiveSession= async() =>{
+    const isUserLogged=await existUserLogged();
+    SetActiveSession(isUserLogged);
+  }
+
+  useEffect(()=>{
+    getActiveSession()
+  },[])
+
 
   const logout=()=>{
     localStorage.removeItem("token");
   }
 
+  const isIndexPage = () => {
+    return window.location.pathname ==="/";
+  }
+
   const visitInitialPage=()=>{
-    if(existUserLogged()){
-      navigate("/classes")
+    
+    if(activeSession){
+      navigate("/classes");
     }
     else{
-      navigate("/")
+      navigate("/" ,{ replace: true });
     }
+
   }
 
   return (
     <nav className="navbar ">
-      <div className="logo" onClick={visitInitialPage}>
+      <div className="logo" onClick={ visitInitialPage }>
         <img
           className="logo-image"
           src="../assets/images/codera_logo_small.png"
@@ -37,11 +48,24 @@ export const NavBar = () => {
         />
         <p className="logo-title header5">Codera</p>
       </div>
-      {activeSession ? (
-        <Link className="button-text navbar-button" to="/" onClick={logout}> Logout </Link>
-      ) : (
-        <Link className="button-text navbar-button" to="/auth/login" > Login </Link>
-      )}
+      { !activeSession || isIndexPage() ? 
+        <Link 
+        className="button-text navbar-button" 
+        to="/auth/login" 
+        > 
+        Login 
+        </Link>
+       : 
+
+      <Link 
+      className="button-text navbar-button" 
+      to="/" 
+      onClick={logout}
+    >
+    Logout 
+    </Link>
+
+      }
     </nav>
   );
 };
