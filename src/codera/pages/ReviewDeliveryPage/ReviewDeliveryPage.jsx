@@ -1,29 +1,35 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { Element } from 'react-scroll';
 import { useFetch, useForm } from "../../../hooks";
 import { ApplicationContext } from "../../../provider";
-import { Button, DefaultSelector, InfoMessage } from "../../../ui/components";
-import { CodeEditor, CommentarySection, DeliveryDetail, TaskDetail } from "../../components";
-import { post } from "../../helpers/post";
 import { updateFromAPI } from "../../helpers/updateFromAPI";
-
+import { CodeEditor, CommentarySection, DeliveryDetail, Loading, TaskDetail } from "../../components";
+import { Button, DefaultSelector, InfoMessage } from "../../../ui/components";
 import "./ReviewDeliveryPage.css";
 
 export const ReviewDeliveryPage = () => {
-  const {deliveryId}= useParams();
-  const { data:delivery , isLoading: loadingDelivery, fetchData: reloadData } = useFetch(`task-deliveries/${deliveryId}`);
-  const { scoreList } = useContext(ApplicationContext);
+
+  const { deliveryId }= useParams();
+  
+  const { scoreList } = useContext( ApplicationContext );
+
   const { score, onFormChange } =useForm({ score: null });
 
+  const { data:delivery , 
+          isLoading: loadingDelivery, 
+          fetchData: reloadData } = useFetch(`task-deliveries/${ deliveryId }`);
+
   const uploadDeliveryCalification= async () =>{
-    if(score.id<=delivery.task.maxScore){
+
+    if( score.id <= delivery.task.maxScore ){
 
       const body={
         score: score.id
       };
 
-      await updateFromAPI(`task-deliveries/${delivery.id}/update-score`, body);
+      await updateFromAPI(`task-deliveries/${ delivery.id }/update-score`, body);
 
       toast.success('Task graded successfully', {
         position: "top-right",
@@ -49,8 +55,7 @@ export const ReviewDeliveryPage = () => {
       progress: undefined,
       theme: "light",
       });
-  }
-
+    }
   }
 
   return (
@@ -59,66 +64,82 @@ export const ReviewDeliveryPage = () => {
 
         <div className="delivery-detail">
             {
-                loadingDelivery ? (<>Loading</>)
+                loadingDelivery ? <Loading/>
                 :
                 <>
-                    <div className="left-section">
-                        <TaskDetail  
-                          task={delivery.task}
-                          showLanguages= {false}
-                          showValuePoints= {false} 
+                  <div className="left-section">
+                  <Element className="task-information-scroll scroll" >
+                      <TaskDetail  
+                        task= { delivery.task }
+                        showLanguages= { false }
+                        showValuePoints= { false } 
+                      />
+                      <DeliveryDetail 
+                        student= { delivery.user } 
+                        selectedLanguage= { delivery.language }  
+                        deliveryDate= { delivery.deliveryDate } 
+                        score= { delivery.score }
+                      />
+                      
+                      <InfoMessage text="you can set the note or update the note" />
+                      
+                      <div className="calification-section">
+                        <DefaultSelector 
+                          objectList= { scoreList } 
+                          name="score"  
+                          defaultValue= { score } 
+                          onChange= { onFormChange } 
                         />
-                        <DeliveryDetail 
-                          student={delivery.user} 
-                          selectedLanguage={delivery.language}  
-                          deliveryDate={delivery.deliveryDate} 
-                          score={delivery.score}
-                        />
-                        
-                        <InfoMessage text="you can set the note or update the note" />
-                        
-                        <div className="calification-section">
-                          <DefaultSelector objectList={scoreList} name="score"  defaultValue={score} onChange={onFormChange} />
-                          <p className="gray-text ">out of</p> {delivery.task.maxScore}
-                          <Button text="Rate" 
-                                type="purple" 
-                                height="35px" 
-                                width="60px" 
-                                borderRadius="10px" 
-                                onClickFunction={uploadDeliveryCalification}
-                        />
-                        </div>
-                        <CommentarySection deliveryId={delivery.id} />
+
+                        <p className="gray-text ">out of</p> <p>{delivery.task.maxScore}</p> 
+
+                        <Button 
+                          text="Rate" 
+                          type="purple" 
+                          height="35px" 
+                          width="60px" 
+                          borderRadius="10px" 
+                          onClickFunction= { uploadDeliveryCalification }
+                      />
+                    
                     </div>
-                         
-                        <div className="right-section">
-                        <CodeEditor
-                            readOnly= {true}
-                            defaultCode= {delivery.code}
-                            defaultLanguage= {delivery.language}
-                            showDownloadCodeButton={false}
-                            showLanguagesSelector={false}
-                            showAutoCompleteCheckbox={false}
-                            showSnippetsCheckbox={false}
-                            height="45vh"
-                            />
-                        </div>
+                    </Element>
+
+                    <Element className="commentary-scroll scroll " >
+                      <CommentarySection deliveryId= { delivery.id } />
+                    </Element>
+                  </div>
+
+                    <div className="right-section">
+                      <CodeEditor
+                          readOnly= { true }
+                          defaultCode= { delivery.code }
+                          defaultLanguage= { delivery.language }
+                          showDownloadCodeButton= { false }
+                          showLanguagesSelector= { false }
+                          showAutoCompleteCheckbox= { false }
+                          showSnippetsCheckbox= { false }
+                          height="45vh"
+                      />
+                    </div>
                 </>
             }
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
+          <ToastContainer />
+
         </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          />
-        <ToastContainer />
+
       </section>
     </div>
   )

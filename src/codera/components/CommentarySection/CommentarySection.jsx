@@ -7,11 +7,13 @@ import { Commentary } from "../";
 import "./CommentarySection.css";
 
 export const CommentarySection = ({ deliveryId }) => {
+
   const [ commentary, setCommentary ] = useState("");
 
   const { data: previusCommentaries,
           isLoading: loadingCommentaries, 
           fetchData: reloadCommentaries } =useFetch(`comments?deliveryId=${deliveryId}`);
+
 
   const onCommentaryChange = ({ target }) =>{
     setCommentary(target.value);
@@ -19,36 +21,46 @@ export const CommentarySection = ({ deliveryId }) => {
 
   const publishComment = async () => {
     const { id } = getUserInformation();
-    const body = {
-                  deliveryId,
-                  userId: id,
-                  content: commentary};
+
+    const body = { deliveryId,
+                   userId: id,
+                   content: commentary};
 
     await post( "comments", body );
 
     setTimeout( ()=> {reloadCommentaries();}, 1000);
-
   }
 
   return (
     <div className="commentary-section">
-        <TextInput variation="text-area" height="8vh" width="100%" value={commentary}  onChange={onCommentaryChange}/>
-        <Button text="Send comment" type="purple" height="35px" width="130px" borderRadius="10px" onClickFunction={publishComment} />
-        <hr />
-        <hr />
-        {
-          loadingCommentaries ? <>Loading</>
-          :
-          <>
-          {
-            previusCommentaries.map((commentary)=>(
-              <Commentary commentary={commentary} />
-              )
+      <TextInput 
+        variation="text-area" 
+        height="8vh" 
+        width="100%" 
+        value={ commentary } 
+        onChange={ onCommentaryChange }
+      />
+      <Button 
+        text="Send comment" 
+        type="purple" 
+        height="35px" 
+        width="130px" 
+        borderRadius="10px" 
+        onClickFunction={publishComment} 
+      />
+      <hr />
+      <hr />
+      {
+        loadingCommentaries ? <p>Loading commentaries...</p>
+        :
+          previusCommentaries.map(( commentary ) => (
+            <Commentary 
+            key={ commentary.id }
+            commentary={ commentary } />
             )
-          }
-          </>
+          )
 
-        }
+      }
     </div>
   )
 }

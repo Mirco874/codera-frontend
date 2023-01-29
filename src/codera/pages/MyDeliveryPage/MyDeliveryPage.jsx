@@ -1,27 +1,35 @@
 import { useParams } from "react-router-dom"
 import { useFetch } from "../../../hooks";
-import { CodeEditor, CommentarySection, DeliveryDetail, TaskDetail } from "../../components";
+import { CodeEditor, CommentarySection, DeliveryDetail, Loading, TaskDetail } from "../../components";
+import { Element } from 'react-scroll';
 import "./MyDeliveryPage.css";
 
 export const MyDeliveryPage = () => {
+
     const {deliveryId}= useParams();
-    const { data:delivery , isLoading: loadingDelivery} = useFetch(`task-deliveries/${deliveryId}`);
+
+    const { data:delivery , 
+            isLoading: loadingDelivery} = useFetch(`task-deliveries/${ deliveryId }`);
  
     return (
         <div className="main-content">
             <section className="main-layout">
                 <div className="delivery-detail">
                 {
-                    loadingDelivery ? (<>Loading</>)
+                    loadingDelivery ? <Loading/>
                     :
                     <>
                         <div className="left-section">
-                            <TaskDetail  task={delivery.task}/>
-                            <DeliveryDetail 
-                                    deliveryDate={delivery.deliveryDate} 
-                                    score={delivery.score}
+                            <Element className="task-information-scroll scroll" >
+                                <TaskDetail  task={delivery.task}/>
+                                <DeliveryDetail 
+                                        deliveryDate={delivery.deliveryDate} 
+                                        score={delivery.score}
                                 /> 
-                            <CommentarySection deliveryId={delivery.id} />
+                            </Element>
+                            <Element className="commentary-scroll scroll " >
+                                <CommentarySection deliveryId={delivery.id} />
+                            </Element>
                         </div>
                         
                         <div className="right-section">
