@@ -60,7 +60,12 @@ export const RegisterPage = () => {
       setTimeout(function() {navigate("/auth/login");}, 1000);
       
     } catch (error) {
-      toast.error(error.response.data.message, {
+      
+      const errorData=error.response.data.message;
+
+      const message = (typeof(errorData)=== 'object') ? errorData[0] : errorData;
+
+      toast.error(message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
