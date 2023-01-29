@@ -4,9 +4,14 @@ import { useFetch } from '../hooks';
 export const ApplicationContext= createContext();
 
 export const DataProvider = ({children}) => {
-    const { data: languageList, isLoading: languagesLoading, fetchData:fetchLanguages}=useFetch("programming-languages");
+  
+    const { data: languageList, 
+            isLoading: languagesLoading, 
+            fetchData:fetchLanguages}=useFetch("programming-languages");
 
-    const { data: classesList, isLoading: classsesLoading, fetchData:fetchClasses} = useFetch("classes");
+    const { data: classesList, 
+            isLoading: classsesLoading, 
+            fetchData:fetchClasses} = useFetch("classes");
     
     const themeList = [
         { id: "monokai", name: "Monokai" },

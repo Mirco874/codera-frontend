@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../../hooks";
+import { InfoMessage } from "../../../ui/components";
 import { DeliveredTaskCard, LinkedText, Loading } from "../../components";
 import "./MyDeliveriesPage.css"
 
@@ -30,7 +31,7 @@ export const MyDeliveriesPage = () => {
                             current deliveries
                     </h2>    
                 }
- 
+                <InfoMessage text="your tasks completed should be here" />
                 {   
                     loadingDeliveries ? (<Loading/>) 
                     : <ul className="my-deliveries-list">

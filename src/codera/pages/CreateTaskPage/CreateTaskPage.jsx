@@ -222,7 +222,6 @@ export const CreateTaskPage = () => {
                     <DefaultSelector 
                       objectList={languageList} 
                       name="selectedLanguages" 
-                      defaultValue={maxScore} 
                       isLoading={languagesLoading} 
                       onChange={onClickLanguage}
                     />

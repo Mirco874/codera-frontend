@@ -1,6 +1,6 @@
 import { useFetch, useModal } from "../../../hooks";
 import { Button, InfoMessage } from "../../../ui/components";
-import { ClassCard, CreateClassModal, JoinClassModal } from "../../components";
+import { ClassCard, CreateClassModal, JoinClassModal, Loading } from "../../components";
 import "./MyClassesPage.css";
 
 export const MyClassesPage = () => {
@@ -18,25 +18,22 @@ export const MyClassesPage = () => {
     <div className="main-content">
       <section className="main-layout">
         <h2 className="h6">My classes</h2>
-        {isLoading ? <p> loading</p>:
-        data.length === 0 ? (
-          <InfoMessage text="Seems that you are not enrolled in any course" />
-        ) : (
-          <ul className="class-list">
-            {data.map(({ id, className, instructor }) => (
-              <>
-                <li style={{ listStyleType: "none" }} key={id}>
-                  <ClassCard
-                    id={id}
-                    className={className}
-                    instructor={instructor.fullName}
-                  />
-                </li>
-              </>
-            ))}
-          </ul>
-        )
-        
+        {isLoading ? <Loading />
+        :
+        data.length === 0 ? 
+            <InfoMessage text="Seems that you are not enrolled in any course" /> 
+            : 
+            <ul className="class-list">
+              {data.map(({ id, className, instructor }) => (
+                  <li style={{ listStyleType: "none" }} key={ id }>
+                    <ClassCard
+                      id={ id }
+                      className={ className }
+                      instructor={ instructor.fullName }
+                    />
+                  </li>
+              ))}
+            </ul>
         }
         <div className="option-buttons">
           <Button
@@ -47,6 +44,7 @@ export const MyClassesPage = () => {
             borderRadius="5px"
             onClickFunction={openJoinModal}
           />
+
           <Button
             type="white"
             height="45px"
@@ -67,7 +65,6 @@ export const MyClassesPage = () => {
           onCloseModal={closeCreateModal}
           onReload={fetchData} 
         />
-
         </div>
       </section>
     </div>

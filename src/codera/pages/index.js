@@ -10,3 +10,5 @@ export * from "./MyDeliveryPage/MyDeliveryPage";
 export * from "./CheckTasksPage/CheckTasksPage";
 export * from "./CheckTaskDelivery/CheckTaskDelivery";
 export * from "./ReviewDeliveryPage/ReviewDeliveryPage";
+export * from "./ProfilePage/ProfilePage";
+export * from "./EditTaskPage/EditTaskPage";

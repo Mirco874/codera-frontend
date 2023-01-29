@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
-import { useFetch } from "../../../hooks";
-import { LinkedText, OptionButton } from "../../components";
-import { BsFillFileEarmarkCodeFill } from "react-icons/bs";
 import { GoChecklist } from "react-icons/go";
-import {AiFillEye} from "react-icons/ai"
-import{GrAdd} from "react-icons/gr"
-
-import "./ClassPage.css";
+import { AiFillEye } from "react-icons/ai";
+import { GrAdd } from "react-icons/gr";
+import { useFetch } from "../../../hooks";
+import { LinkedText, Loading, OptionButton } from "../../components";
 import { getUserInformation } from "../../helpers/userData";
+import { BsFillFileEarmarkCodeFill } from "react-icons/bs";
+import "./ClassPage.css";
 
+ 
 export const ClassPage = () => {
+
   const { classId } = useParams();
   const { data, isLoading } = useFetch(`classes/${classId}`);
 
@@ -20,7 +21,7 @@ export const ClassPage = () => {
   return (
     <div className="main-content">
       <section className="main-layout">
-        {isLoading ? ( <>Loading</>  ) : 
+        {isLoading ? ( <Loading />  ) : 
         ( <>
             <h2 className="header6 section-title"> 
                 <LinkedText className="header6" path="/classes">My classes</LinkedText> {">"} {data.className} 

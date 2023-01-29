@@ -2,6 +2,7 @@ import { useFetch } from "../../../hooks"
 import { useParams, useNavigate } from "react-router-dom";
 import { LinkedText, TaskCard } from "../../components";
 import "./PendingTaskPage.css"
+import { InfoMessage } from "../../../ui/components";
 
 export const PendingTaskPage = () => {
     const {classId} = useParams();
@@ -40,13 +41,15 @@ export const PendingTaskPage = () => {
           </h2> 
           )
         }
+        <InfoMessage text="your pending tasks should be here" />
         <div className="tasks">
           {
-            (!isLoading) &&  tasks.map((task)=>(
+            ( !isLoading ) &&  tasks.map(( task )=>(
             <TaskCard 
-              task={task}
+              key={ task.id }
+              task={ task }
               buttonText="Check task"
-              onClickButton={()=>{goToTask(task.id)}}
+              onClickButton={()=>{ goToTask( task.id ) }}
             />
             ) 
             )

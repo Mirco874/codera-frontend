@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import PureModal from 'react-pure-modal';
-import { LinkedText, TaskCard } from "../../components";
+import { LinkedText, Loading, TaskCard } from "../../components";
 import {useFetch, useModal} from "../../../hooks";
-import { Button } from "../../../ui/components";
+import { Button, InfoMessage } from "../../../ui/components";
 import { removeFromAPI } from "../../helpers/removeFromAPI";
 import { useState } from "react";
 import 'react-pure-modal/dist/react-pure-modal.min.css';
@@ -10,103 +10,106 @@ import "./CheckTasksPage.css";
 
 export const CheckTasksPage = () => {
     const { classId}=useParams();
-
-    const{ data: taskList, isLoading: loadingTasks, fetchData: fetchTasks }= useFetch(`tasks?classGroupId=${classId}`);
     
-    const { data: classGroup , isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
+    const navigate = useNavigate();
 
-    const { open, onOpenModal, onCloseModal } =useModal();
+    const [ toDeleteTask, setToDeleteTask ] = useState(-1);
+    
+    const{ data: taskList, 
+           isLoading: loadingTasks, 
+           fetchData: fetchTasks } = useFetch(`tasks?classGroupId=${ classId }`);
+    
+    const { data: classGroup , 
+            isLoading: loadingClassGroup } = useFetch(`classes/${classId}`);
 
-    const navigate= useNavigate();
+    const { open, 
+            onOpenModal, 
+            onCloseModal } = useModal();
 
-    const [ toDeleteTask, setToDeleteTask ]= useState(-1);
+    
 
-
-    const goToDeliveries=(taskId)=>{
-      navigate(taskId.toString());
+    const goToDeliveries = ( taskId ) => {
+      navigate( taskId.toString() );
     }
 
-    const openDeleteModal=(taskId)=>{
-      setToDeleteTask(taskId);
+    const goToEditTask = ( taskId ) => {
+      navigate(`edit/${ taskId }`);
+    }
+ 
+    const openDeleteModal=( taskId )=>{
+      setToDeleteTask( taskId );
       onOpenModal();
     }
 
-    const deleteTask=async ()=>{
-      const response = await removeFromAPI(`tasks/${toDeleteTask}`);
-      fetchTasks();
+    const deleteTask= async () => {
+      await removeFromAPI(`tasks/${ toDeleteTask }`);
 
+      setTimeout( ()=> { fetchTasks(); }, 1000);
+      
       onCloseModal();
     }
 
-    const editTask=()=>{
-
-    }
 
   return (
     <div className="main-content">
       <section className="main-layout">
         <div>
-
         {
-          loadingClassGroup ? ( <>Loading..</>  ) : 
-          (
-          <h2 className="header6 section-title">
+          loadingClassGroup ? <p>Loading title...</p> : 
+            <h2 className="header6 section-title">
+              <LinkedText className="header6" path="/classes">
+                My classes
+              </LinkedText> 
 
-            <LinkedText className="header6" path="/classes">
-              My classes
-            </LinkedText> 
+                {">"} 
 
-              {">"} 
+              <LinkedText className="header6" back={true}>
+                { classGroup.className } 
+              </LinkedText>
 
-            <LinkedText className="header6" back={true}>
-              { classGroup.className } 
-            </LinkedText>
-
-              {"> "} 
-              check tasks
-
-          </h2> 
-          )
+                {"> "} 
+                check tasks
+            </h2> 
+          
         }
+          <InfoMessage text="In this page you will can see your tasks created" />
 
-
-
-
-        {loadingTasks? <>loading</> 
-        :
-        <ul className="tasks">
-            {
-                taskList.map((task)=>(
-                <li>
-                    <TaskCard 
-                        task= {task}
-                        showRemainingDays= {false}
-                        showEditButton= {true}
-                        showDeleteButton ={true}
-                        buttonText= {"Check deliveries"}
-                        onDelete= {()=>{openDeleteModal(task.id)}}
-                        onEdit={()=>{} }
-                        onClickButton={()=>{goToDeliveries(task.id)}}
-                    />   
-                </li>
-                ))
-            }
-        </ul>
-        }
+          { loadingTasks? <Loading/>
+          :
+          <ul className="tasks">
+              {
+                  taskList.map((task)=>(
+                  <li key={ task.id }>
+                      <TaskCard 
+                          task= { task }
+                          showRemainingDays= { false }
+                          showEditButton= { true }
+                          showDeleteButton = { true }
+                          buttonText= "Check deliveries" 
+                          onDelete= { ()=>{ openDeleteModal( task.id ) }}
+                          onEdit={ ()=>{ goToEditTask(task.id) }}
+                          onClickButton={()=>{ goToDeliveries(task.id) }}
+                      />   
+                  </li>
+                  ))
+              }
+          </ul>
+          }
+          <PureModal
+            header="Are you sure that you want to delete this task?"
+            isOpen={open}
+            closeButton="X"
+            onClose={onCloseModal}
+            width="36%"
+          >
+            <div className="delete-modal-buttons">
+              <Button text="Yes" width="50px" height="30px" borderRadius="10px" onClickFunction={deleteTask}/>
+              <Button text="No" type="red" width="50px" height="30px" borderRadius="10px" onClickFunction={onCloseModal}/>
+            </div>
+            
+          </PureModal>
         </div>
-    <PureModal
-      header="Are you sure that you want to delete this task?"
-      isOpen={open}
-      closeButton="X"
-      onClose={onCloseModal}
-      width="36%"
-    >
-      <div className="delete-modal-buttons">
-        <Button text="Yes" width="50px" height="30px" borderRadius="10px" onClickFunction={deleteTask}/>
-        <Button text="No" type="red" width="50px" height="30px" borderRadius="10px" onClickFunction={onCloseModal}/>
-      </div>
-      
-    </PureModal>
+
 
       </section>
     </div>
