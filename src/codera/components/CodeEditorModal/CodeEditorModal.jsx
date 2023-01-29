@@ -5,7 +5,7 @@ import { CodeEditor } from "../";
 import 'react-pure-modal/dist/react-pure-modal.min.css';
 import "./CodeEditorModal.css";
 
-export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode }) => {
+export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode, initialValue }) => {
 
   return (
 
@@ -19,6 +19,7 @@ export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode }) => {
       <CodeEditor 
         onInputChange={onUpdateCode} 
         height="280px"
+        defaultCode={initialValue}
         />
 
         <Button
@@ -37,10 +38,14 @@ export const CodeEditorModal = ({ openState, onCloseModal, onUpdateCode }) => {
 CodeEditorModal.defaultProps = {
     openState: false,
     onCloseModal: () => {console.log("close modal"); },
+    onUpdateCode: () => {console.log("update modal value"); },
+    defaultValue: ""
   };
   
   CodeEditorModal.propTypes = {
     openState: PropTypes.bool,
     onCloseModal: PropTypes.func,
+    onUpdateCode: PropTypes.func,
+    defaultValue: PropTypes.string
   };
   
