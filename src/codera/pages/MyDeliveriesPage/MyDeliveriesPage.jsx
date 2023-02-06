@@ -37,7 +37,11 @@ export const MyDeliveriesPage = () => {
                     : <ul className="my-deliveries-list">
                     {
                         deliveries.map(
-                            (taskDelivery)=> ( <li><DeliveredTaskCard delivery={taskDelivery}/></li> )
+                            (taskDelivery)=> (  
+                            <div key={taskDelivery.id}>
+                                <li><DeliveredTaskCard delivery={taskDelivery}/></li>
+                            </div>  
+                            )
                         )
                     }
                     </ul>

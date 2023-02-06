@@ -1,5 +1,7 @@
 .card-deliveries li{
+    display: inline-flex;
+
     list-style-type: none;
-
-
+    margin-block: 2vh;
+    margin-inline: 1vw;
 }

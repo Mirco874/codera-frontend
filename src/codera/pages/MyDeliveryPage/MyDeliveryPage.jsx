@@ -21,7 +21,7 @@ export const MyDeliveryPage = () => {
                     <>
                         <div className="left-section">
                             <Element className="task-information-scroll scroll" >
-                                <TaskDetail  task={delivery.task}/>
+                                <TaskDetail  task={delivery.task} showLanguages={false} />
                                 <DeliveryDetail 
                                         deliveryDate={delivery.deliveryDate} 
                                         score={delivery.score}

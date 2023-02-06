@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
 import { useFetch } from "../../../hooks";
+import { InfoMessage } from "../../../ui/components";
 import { LinkedText, StudentDeliveryCard } from "../../components";
 
 import "./CheckTaskDelivery.css";
@@ -39,7 +40,7 @@ export const CheckTaskDelivery = () => {
                   {"> "} 
                   {task.taskTitle}
               </h2> 
-
+              <InfoMessage text="You can see the deliveries in this section" />
               <ul className="card-deliveries">
                 {deliveries.map(
                   (delivery)=>

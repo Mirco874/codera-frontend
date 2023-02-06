@@ -59,6 +59,7 @@ export const EditTaskPage = () => {
     },[])
 
     useEffect(()=>{
+      
         if(taskData!==null){
             const newFormData = {
                 classId,
@@ -77,10 +78,6 @@ export const EditTaskPage = () => {
         }
     },[taskData,loadingTaskData])
 
-
-  const getMaxScore=()=>{
-    
-  }
 
   const removePreviusLanguages=async ()=> {
     await removeFromAPI(`language-asignation/task/${taskId}`);

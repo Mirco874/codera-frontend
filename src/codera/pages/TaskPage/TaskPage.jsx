@@ -38,6 +38,19 @@ export const TaskPage = () => {
   const sendTaskDelivery= async() =>{
 
     const body={ taskId:+taskId, languageId, code }; 
+    if( code === "" || +taskId === 0 ){
+      toast.error('Chose a programming language and upload your code', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      return;
+    }
 
     try {
 
