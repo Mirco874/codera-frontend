@@ -32,16 +32,12 @@ export const CodeEditor = ( {
   {
 
     const dataContext =useContext(ApplicationContext);
-
     const languageList=defaultLanguageList.length===0 ? dataContext.languageList : defaultLanguageList
-
-    const { languagesLoading,
-            fetchLanguages, 
-            themeList} =dataContext;
-
-
-    const [code, setCode] = useState(defaultCode);    
+    const { languagesLoading, fetchLanguages, themeList} =dataContext;
+    const [code, setCode] = useState(defaultCode); 
+    const [sendingCode, setSendingCode] = useState(false);
     const [outputConsole, setOutpuConsole] = useState("");
+    
 
     const editorForm = {
         theme: themeList[0],
@@ -59,7 +55,6 @@ export const CodeEditor = ( {
 
     const onCodeChange = (value) => {
       setCode(value);
-
       onInputChange(value);
     };
  
@@ -72,20 +67,20 @@ export const CodeEditor = ( {
 
         switch (programmingLanguage) {
             case "java":
-            runJavaCode(codeToExcecute);
-            break;
+              runJavaCode(codeToExcecute);
+              break;
 
             case "javascript":
-            runInterpretedCode(codeToExcecute, "javascript");
-            break;
+              runInterpretedCode(codeToExcecute, "javascript");
+              break;
 
             case "python":
-            runInterpretedCode(codeToExcecute, "python");
-            break;
+              runInterpretedCode(codeToExcecute, "python");
+              break;
 
             default:
-            showSelectLanguageMessage();
-            break;
+              showSelectLanguageMessage();
+              break;
         }
     };
     
@@ -117,14 +112,17 @@ export const CodeEditor = ( {
 
             return;
         }
-        
+        setSendingCode(true);
         const response = await runCode("/run/java", body);
+        setSendingCode(false);
         setOutpuConsole(response.data.output);
     };
     
       const runInterpretedCode = async (code, languageName) => {
         const body = {code};
+        setSendingCode(true);
         const response = await runCode(`/run/${languageName}`, body);
+        setSendingCode(false);
         setOutpuConsole(response.data.output);
       };
     
@@ -290,7 +288,8 @@ export const CodeEditor = ( {
           )
         }
 
-          <Terminal text={outputConsole} />
+          <Terminal isLoading={sendingCode} text={outputConsole} />
+          
     </div>
   )
 }
