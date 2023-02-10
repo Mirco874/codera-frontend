@@ -1,5 +1,3 @@
-
-
 import { getDate, getTime } from "../../helpers/date"
 import "./Commentary.css"
 
@@ -10,7 +8,7 @@ export const Commentary = ( { commentary } ) => {
     <div className="commentary">
         <img className="student-photo" src={user.photo} alt={user.fullName} />
 
-        <div className="data">
+        <div className="commentary-detail">
             <div className="header">
                 <p className="commentary-user-name subtitle2"><b>{user.fullName}</b></p>
                 <p className="commentary-date"> { getDate(commentDate) } { getTime(commentDate) }  </p>    

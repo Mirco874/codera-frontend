@@ -29,6 +29,7 @@ export const CommentarySection = ({ deliveryId }) => {
     await post( "comments", body );
 
     setTimeout( ()=> {reloadCommentaries();}, 1000);
+    setCommentary("")
   }
 
   return (

@@ -1,8 +1,8 @@
 .commentary{
-     width: 100%;
+     width: 97%;
      display: flex;
+     justify-content: flex-start;
      margin-bottom: 20px;
-     justify-content: space-between;
 }
 
 .commentary .student-photo{
@@ -23,5 +23,8 @@
 .commentary-user-name{
     width: 80%;
     margin-right: 5%;
-    
+}
+
+.commentary-detail{
+    width: 90%;
 }
