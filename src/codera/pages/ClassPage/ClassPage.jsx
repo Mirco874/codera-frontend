@@ -28,7 +28,7 @@ export const ClassPage = () => {
             </h2>
 
             {typeof data.instructor !== "undefined" && 
-              ( <p className="body2"> <b>Instructor: </b> {data.instructor.fullName} </p> )
+              ( <p className="body2"> <b>Teacher: </b> {data.instructor.fullName} </p> )
             }
             <div className="option-buttons">
             {getUserId() === data.instructor.id ? 
